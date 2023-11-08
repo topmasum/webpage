@@ -28,17 +28,17 @@
 <body>
  <div class="container">
         <h1 align="center">Contact List</h1>
-        <div class="row">
-            <div class="col-md-6">
-                <!-- Search Bar with Icon -->
-                <div class="input-group mb-3">
-                    <input type="text" class="form-control" placeholder="Search for a contact" id="searchInput">
-                    <div class="input-group-append">
-                        <span class="input-group-text"><i class="fa fa-search"></i></span>
-                    </div>
-                </div>
-            </div>
+       <div class="container">
+       
+    <!-- Search Bar with Icon for Contact Name and Phone Number -->
+    <div class="input-group mb-3">
+        <input type="text" class="form-control" placeholder="Search for a contact by name or phone number" id="searchInput">
+        <div class="input-group-append">
+            <span class="input-group-text"><i class="fa fa-search"></i></span>
         </div>
+    </div>
+</div>
+
         <hr>
 
    
@@ -49,7 +49,7 @@
                 <div class="card contact-card mb-3">
                     <div class="card-body">
                         <h5 class="card-title">Masum</h5>
-                        <p class="card-text">Phone: (123) 456-7890</p>
+                        <p class="card-text">Phone: 01641058008</p>
                         <p class="card-text">Relationship: Friend</p>
                     </div>
 					<button class="call-button btn btn-primary">
@@ -61,7 +61,7 @@
                 <div class="card contact-card mb-3">
                     <div class="card-body">
                         <h5 class="card-title">Masum 1</h5>
-                        <p class="card-text">Phone: (123) 456-7890</p>
+                        <p class="card-text">Phone: 01576487021</p>
                         <p class="card-text">Relationship: Friend</p>
                     </div>
 					<button class="call-button btn btn-primary">
@@ -73,7 +73,7 @@
                 <div class="card contact-card mb-3">
                     <div class="card-body">
                         <h5 class="card-title">Oishy</h5>
-                        <p class="card-text">Phone: (123) 456-7890</p>
+                        <p class="card-text">Phone: 01953813709</p>
                         <p class="card-text">Relationship: Friend</p>
                     </div>
 					<button class="call-button btn btn-primary">
@@ -318,7 +318,7 @@
                 <div class="card contact-card mb-3">
                     <div class="card-body">
                         <h5 class="card-title">Minhaj</h5>
-                        <p class="card-text">Phone: (234) 567-8901</p>
+                        <p class="card-text">Phone: 01222222222</p>
                         <p class="card-text">Relationship: Family</p>
                     </div>
 					<button class="call-button btn btn-primary">
@@ -342,7 +342,7 @@
                 <div class="card contact-card mb-3">
                     <div class="card-body">
                         <h5 class="card-title">Ammu</h5>
-                        <p class="card-text">Phone: (234) 567-8901</p>
+                        <p class="card-text">Phone: 01753872101</p>
                         <p class="card-text">Relationship: Family</p>
                     </div>
 					<button class="call-button btn btn-primary">
@@ -354,7 +354,7 @@
                 <div class="card contact-card mb-3">
                     <div class="card-body">
                         <h5 class="card-title">Abbu</h5>
-                        <p class="card-text">Phone: (234) 567-8901</p>
+                        <p class="card-text">Phone: 01710876355</p>
                         <p class="card-text">Relationship: Family</p>
                     </div>
 					<button class="call-button btn btn-primary">
@@ -511,35 +511,34 @@
             </div>
         </div>
     
-	<script>
-        const searchInput = document.getElementById('searchInput');
-        const friendContacts = document.getElementById('friendContacts');
-        const familyContacts = document.getElementById('familyContacts');
-        const relativeContacts = document.getElementById('relativeContacts');
+	 <script>
+    const searchInput = document.getElementById('searchInput');
+    const friendContacts = document.getElementById('friendContacts');
+    const familyContacts = document.getElementById('familyContacts');
+    const relativeContacts = document.getElementById('relativeContacts');
 
-        searchInput.addEventListener('input', () => {
-            const searchTerm = searchInput.value.toLowerCase();
+    searchInput.addEventListener('input', () => {
+        const searchTerm = searchInput.value.toLowerCase();
 
-            // Function to show or hide contact cards based on the search term
-            function filterContacts(container, sectionName) {
-                const contactCards = container.getElementsByClassName('card');
-                for (const card of contactCards) {
-                    const cardTitle = card.querySelector('.card-title').textContent.toLowerCase();
-                    if (cardTitle.includes(searchTerm)) {
-                        card.style.display = 'block';
-                    } else {
-                        card.style.display = 'none';
-                    }
+        function filterContacts(container, sectionName, searchTerm) {
+            const contactCards = container.getElementsByClassName('card');
+            for (const card of contactCards) {
+                const cardTitle = card.querySelector('.card-title').textContent.toLowerCase();
+                const cardPhone = card.querySelector('.card-text').textContent.toLowerCase();
+
+                if (cardTitle.includes(searchTerm) || cardPhone.includes(searchTerm)) {
+                    card.style.display = 'block';
+                } else {
+                    card.style.display = 'none';
                 }
             }
+        }
 
-            // Apply the filter for each section
-            filterContacts(friendContacts, 'Friend');
-            filterContacts(familyContacts, 'Family');
-            filterContacts(relativeContacts, 'Relatives');
-        });
-    </script>
-	
+        filterContacts(friendContacts, 'Friend', searchTerm);
+        filterContacts(familyContacts, 'Family', searchTerm);
+        filterContacts(relativeContacts, 'Relatives', searchTerm);
+    });
+</script>
 	   
     <!-- Add Bootstrap and Font Awesome (for icons) JavaScript links -->
    
