@@ -27,20 +27,22 @@
 </head>
 <body>
  <div class="container">
-        <h1 align="center">Contact List</h1>
-       <div class="container">
-       
-    <!-- Search Bar with Icon for Contact Name and Phone Number -->
-    <div class="input-group mb-3">
-        <input type="text" class="form-control" placeholder="Search for a contact by name or phone number" id="searchInput">
-        <div class="input-group-append">
+      <h1 align="center">Contact List</h1>
+      <div class="col-md-6">
+        <!-- Search Bar with Icon for Contact Name and Phone Number -->
+        <div class="input-group mb-3">
+          <input
+            type="text"
+            class="form-control"
+            placeholder="Search for a contact by name or phone number"
+            id="searchInput"
+          />
+          <div class="input-group-append">
             <span class="input-group-text"><i class="fa fa-search"></i></span>
+          </div>
         </div>
-    </div>
-</div>
-
-        <hr>
-
+      </div>
+      <hr />
    
 		<hr>
 		   <h2>Friend</h2>
@@ -510,36 +512,69 @@
                 </div>
             </div>
         </div>
-    
-	 <script>
-    const searchInput = document.getElementById('searchInput');
-    const friendContacts = document.getElementById('friendContacts');
-    const familyContacts = document.getElementById('familyContacts');
-    const relativeContacts = document.getElementById('relativeContacts');
+    <script>
+      const searchInput = document.getElementById("searchInput");
+      const friendContacts = document.getElementById("friendContacts");
+      const familyContacts = document.getElementById("familyContacts");
+      const relativeContacts = document.getElementById("relativeContacts");
 
-    searchInput.addEventListener('input', () => {
+      // Store the original HTML content of contact card containers
+      const originalContactList = {
+        friend: friendContacts.innerHTML,
+        family: familyContacts.innerHTML,
+        relatives: relativeContacts.innerHTML,
+      };
+
+      searchInput.addEventListener("input", () => {
         const searchTerm = searchInput.value.toLowerCase();
 
+        // Function to show or hide contact cards based on the search term
         function filterContacts(container, sectionName, searchTerm) {
-            const contactCards = container.getElementsByClassName('card');
-            for (const card of contactCards) {
-                const cardTitle = card.querySelector('.card-title').textContent.toLowerCase();
-                const cardPhone = card.querySelector('.card-text').textContent.toLowerCase();
+            const contactCards = container.getElementsByClassName("card");
+            let matches = [];
 
-                if (cardTitle.includes(searchTerm) || cardPhone.includes(searchTerm)) {
-                    card.style.display = 'block';
-                } else {
-                    card.style.display = 'none';
+            for (const card of contactCards) {
+                const cardTitle = card
+                    .querySelector(".card-title")
+                    .textContent.toLowerCase();
+                const cardPhone = card
+                    .querySelector(".card-text")
+                    .textContent.toLowerCase();
+
+                if (cardTitle.includes(searchTerm) || cardPhone.includes(searchTerm)){
+                    matches.push(card);
+                }
+            }
+
+            // Clear the container
+            container.innerHTML = "";
+
+            // Append matching cards sequentially
+            for (const match of matches) {
+                const colDiv = document.createElement("div");
+                colDiv.classList.add("col-md-4");
+                colDiv.appendChild(match);
+                container.appendChild(colDiv);
+            }
+
+            // Append non-matching cards and restore the original list when the search input is empty
+            if (searchTerm === "") {
+                container.innerHTML = originalContactList[sectionName];
+            } else {
+                for (const card of contactCards) {
+                    if (!matches.includes(card)) {
+                        container.appendChild(card);
+                    }
                 }
             }
         }
 
-        filterContacts(friendContacts, 'Friend', searchTerm);
-        filterContacts(familyContacts, 'Family', searchTerm);
-        filterContacts(relativeContacts, 'Relatives', searchTerm);
-    });
-</script>
-	   
+        // Apply the filter for each section
+        filterContacts(friendContacts, "friend", searchTerm);
+        filterContacts(familyContacts, "family", searchTerm);
+        filterContacts(relativeContacts, "relatives", searchTerm);
+      });
+    </script>
     <!-- Add Bootstrap and Font Awesome (for icons) JavaScript links -->
    
 </body>
