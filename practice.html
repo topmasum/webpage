@@ -1,18 +1,20 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Contact List</title>
-    <!-- Add Bootstrap CSS and optional custom styles for the box shape and shadow -->
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
-    <link rel="stylesheet" href="http://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Contact List(c)</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />
     <style>
         .contact-card {
-            border: 2px solid #007bff; /* Blue border color */
-            border-radius: 10px; /* Rounded corners */
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3); /* Shadow effect */
-            height: 180px; /* Set a fixed height for the card */
+            border: 2px solid #007bff;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+            height: 150px; /* Set the height to 180px */
+			width: 300px;
+            margin: 10px;
+            display: inline-block;
         }
         .call-button {
             position: absolute;
@@ -20,147 +22,245 @@
             right: 10px;
         }
         .phone-icon {
-            color: #007bff; /* Blue icon color */
+            color: #007bff;
+        }
+        /* Override Bootstrap card classes */
+        .card {
+            border: none;
+            border-radius: 0;
+        }
+        .card-body {
+            padding: 10px;
         }
     </style>
 </head>
 <body>
-    <div class="container">
-        <h1 align="center">Contact List</h1>
-        <div class="col-md-6">
-            <!-- Search Bar with Icon for Contact Name and Phone Number -->
-            <div class="input-group mb-3">
-                <input type="text" class="form-control" placeholder="Search for a contact by name or phone number" id="searchInput">
-                <div class="input-group-append">
-                    <span class="input-group-text"><i class="fa fa-search"></i></span>
-                </div>
+<div class="container">
+    <h1 align="center">Contact List</h1>
+    <div class="col-md-6">
+        <hr />
+        <!-- Filter Buttons for Categories -->
+		
+        <div class="input-group mb-3">
+            <input
+                type="text"
+                class="form-control"
+                placeholder="Search for a contact by name or phone number"
+                id="searchInput"
+            />
+            <div class="input-group-append">
+                <span class="input-group-text"><i class="fa fa-search"></i></span>
             </div>
         </div>
-        <hr>
-        <!-- Friend Section -->
-        <h2>Friend</h2>
-        <div class="row" id="friendContacts">
-            <!-- Contact 1 Card -->
-            <div class="col-md-4">
-                <div class="card contact-card mb-3">
-                    <div class="card-body">
-                        <h5 class="card-title">Masum</h5>
-                        <p class="card-text">Phone: 242424242</p>
-                        <p class="card-text">Relationship: Friend</p>
-                    </div>
-                    <button class="call-button btn btn-primary">
-                        <i class="fa fa-address-book"></i>
-                    </button>
-                </div>
-            </div>
-            <!-- Add more contact cards for friends as needed -->
+   
+
+        <div class="btn-group">
+            <button id="filterAll" class="btn btn-primary">All</button>
+            <button id="filterFamily" class="btn btn-primary">Family</button>
+            <button id="filterFriend" class="btn btn-primary">Friend</button>
+            <button id="filterRelatives" class="btn btn-primary">Relatives</button>
         </div>
-        <!-- Family Section -->
-        <h2>Family</h2>
-        <div class="row" id="familyContacts">
-            <!-- Contact 2 Card (Family) -->
-            <div class="col-md-4">
-                <div class="card contact-card mb-3">
-                    <div class="card-body">
-                        <h5 class="card-title">Minhaj</h5>
-                        <p class="card-text">Phone: 2222222</p>
-                        <p class="card-text">Relationship: Family</p>
-                    </div>
-                    <button class="call-button btn btn-primary">
-                        <i class="fa fa-address-book"></i>
-                    </button>
-                </div>
+		
+    </div>
+    <hr />
+    <!-- Friend Section -->
+    <h2>Friend</h2>
+    <div class="row" id="friendContacts">
+        <!-- Contact Cards for Friends -->
+        <!-- Add more contact cards for friends as needed -->
+        <div class="card contact-card mb-3">
+            <div class="card-body">
+                <h5 class="card-title">Masum</h5>
+                <p class="card-text">Phone: 242424242</p>
+                <p class="card-text">Relationship: Friend</p>
             </div>
-            <div class="col-md-4">
-                <div class="card contact-card mb-3">
-                    <div class="card-body">
-                        <h5 class="card-title">Ammu</h5>
-                        <p class="card-text">Phone: 1111111</p>
-                        <p class="card-text">Relationship: Family</p>
-                    </div>
-                    <button class="call-button btn btn-primary">
-                        <i class="fa fa-address-book"></i>
-                    </button>
-                </div>
-            </div>
-            <!-- Add more contact cards for family as needed -->
+            <button class="call-button btn btn-primary">
+                <i class="fa fa-address-book"></i>
+            </button>
         </div>
-        <!-- Relatives Section -->
-        <h2>Relatives</h2>
-        <div class="row" id="relativeContacts">
-            <!-- Contact Cards for Relatives -->
-            <div class="col-md-4">
-                <div class="card contact-card mb-3">
-                    <div class="card-body">
-                        <h5 class="card-title">Abuu</h5>
-                        <p class="card-text">Phone: 5656565</p>
-                        <p class="card-text">Relationship: Relatives</p>
-                    </div>
-                    <button class="call-button btn btn-primary">
-                        <i class="fa fa-address-book"></i>
-                    </button>
-                </div>
+        <!-- Add more contact cards for friends as needed -->
+    </div>
+    <!-- Family Section -->
+    <h2>Family</h2>
+    <div class="row" id="familyContacts">
+        <!-- Contact Cards for Family -->
+        <!-- Add more contact cards for family as needed -->
+        <div class="card contact-card mb-3">
+            <div class="card-body">
+                <h5 class="card-title">Minhaj</h5>
+                <p class="card-text">Phone: 2222222</p>
+                <p class="card-text">Relationship: Family</p>
             </div>
-            <!-- Add more contact cards for relatives as needed -->
+            <button class="call-button btn btn-primary">
+                <i class="fa fa-address-book"></i>
+            </button>
+        </div>
+        <div class="card contact-card mb-3">
+            <div class="card-body">
+                <h5 class="card-title">Ammu</h5>
+                <p class="card-text">Phone: 1111111</p>
+                <p class="card-text">Relationship: Family</p>
+            </div>
+            <button class="call-button btn btn-primary">
+                <i class="fa fa-address-book"></i>
+            </button>
+        </div>
+        <!-- Add more contact cards for family as needed -->
+		 <div class="card contact-card mb-3">
+            <div class="card-body">
+                <h5 class="card-title">Minhaj</h5>
+                <p class="card-text">Phone: 2222222</p>
+                <p class="card-text">Relationship: Family</p>
+            </div>
+            <button class="call-button btn btn-primary">
+                <i class="fa fa-address-book"></i>
+            </button>
+        </div>
+		 <div class="card contact-card mb-3">
+            <div class="card-body">
+                <h5 class="card-title">Minhaj</h5>
+                <p class="card-text">Phone: 2222222</p>
+                <p class="card-text">Relationship: Family</p>
+            </div>
+            <button class="call-button btn btn-primary">
+                <i class="fa fa-address-book"></i>
+            </button>
         </div>
     </div>
-    <!-- Add Bootstrap and Font Awesome (for icons) JavaScript links -->
+    <!-- Relatives Section -->
+    <h2>Relatives</h2>
+    <div class="row" id="relativeContacts">
+        <!-- Contact Cards for Relatives -->
+        <!-- Add more contact cards for relatives as needed -->
+        <div class="card contact-card mb-3">
+            <div class="card-body">
+                <h5 class="card-title">Abuu</h5>
+                <p class="card-text">Phone: 5656565</p>
+                <p class="card-text">Relationship: Relatives</p>
+            </div>
+            <button class="call-button btn btn-primary">
+                <i class="fa fa-address-book"></i>
+            </button>
+        </div>
+        <!-- Add more contact cards for relatives as needed -->
+    </div>
+</div>
 <script>
-    const searchInput = document.getElementById('searchInput');
-    const friendContacts = document.getElementById('friendContacts');
-    const familyContacts = document.getElementById('familyContacts');
-    const relativeContacts = document.getElementById('relativeContacts');
+// Function to search and filter contacts by name or number
+ // Function to search and filter contacts by name or number
+const searchInput = document.getElementById("searchInput");
+const friendContacts = document.getElementById("friendContacts");
+const familyContacts = document.getElementById("familyContacts");
+const relativeContacts = document.getElementById("relativeContacts");
 
-    // Store the original HTML content of contact card containers
-    const originalContactList = {
-        friend: friendContacts.innerHTML,
-        family: familyContacts.innerHTML,
-        relatives: relativeContacts.innerHTML,
-    };
+// Store the original HTML content of contact card containers
+const originalContactList = {
+    friend: friendContacts.innerHTML,
+    family: familyContacts.innerHTML,
+    relatives: relativeContacts.innerHTML,
+};
 
-    searchInput.addEventListener('input', () => {
-        const searchTerm = searchInput.value.toLowerCase();
+searchInput.addEventListener("input", () => {
+    const searchTerm = searchInput.value.toLowerCase();
 
-        // Function to show or hide contact cards based on the search term
-        function filterContacts(container, sectionName, searchTerm) {
-            const contactCards = container.getElementsByClassName('card');
-            let matches = [];
+    // Function to show or hide contact cards based on the search term
+    function filterContacts(container, sectionName, searchTerm) {
+        const contactCards = container.getElementsByClassName("card");
+        let matches = [];
 
-            for (const card of contactCards) {
-                const cardTitle = card.querySelector('.card-title').textContent.toLowerCase();
-                const cardPhone = card.querySelector('.card-text').textContent.toLowerCase();
+        for (const card of contactCards) {
+            const cardTitle = card
+                .querySelector(".card-title")
+                .textContent.toLowerCase();
+            const cardPhone = card
+                .querySelector(".card-text")
+                .textContent.toLowerCase();
 
-                if (cardTitle.includes(searchTerm) || cardPhone.includes(searchTerm)) {
-                    matches.push(card);
-                }
-            }
-
-            // Clear the container
-            container.innerHTML = '';
-
-            // Append matching cards sequentially
-            for (const match of matches) {
-                container.appendChild(match);
-            }
-
-            // Append non-matching cards and restore the original list when the search input is empty
-            if (searchTerm === '') {
-                container.innerHTML = originalContactList[sectionName];
-            } else {
-                for (const card of contactCards) {
-                    if (!matches.includes(card)) {
-                        container.appendChild(card);
-                    }
-                }
+            if (cardTitle.includes(searchTerm) || cardPhone.includes(searchTerm)) {
+                matches.push(card);
             }
         }
 
-        // Apply the filter for each section
-        filterContacts(friendContacts, 'friend', searchTerm);
-        filterContacts(familyContacts, 'family', searchTerm);
-        filterContacts(relativeContacts, 'relatives', searchTerm);
-    });
-</script>
+        // Create a new container for the matching cards
+        const newContainer = document.createElement("div");
+        newContainer.classList.add("row");
 
+        // Append matching cards sequentially to the new container
+        for (const match of matches) {
+            const colDiv = document.createElement("div");
+            colDiv.classList.add("col-md-4");
+            colDiv.appendChild(match);
+            newContainer.appendChild(colDiv);
+        }
+
+        // Replace the existing container with the new container
+        container.innerHTML = "";
+        container.appendChild(newContainer);
+
+        // Append non-matching cards and restore the original list when the search input is empty
+        if (searchTerm === "") {
+            container.innerHTML = originalContactList[sectionName];
+        }
+    }
+
+    // Apply the filter for each section
+    filterContacts(friendContacts, "friend", searchTerm);
+    filterContacts(familyContacts, "family", searchTerm);
+    filterContacts(relativeContacts, "relatives", searchTerm);
+});
+
+
+ 
+
+    // Function to display contacts based on category
+    // Function to display contacts based on category
+    const filterAllButton = document.getElementById("filterAll");
+    const filterFamilyButton = document.getElementById("filterFamily");
+    const filterFriendButton = document.getElementById("filterFriend");
+    const filterRelativesButton = document.getElementById("filterRelatives");
+
+    filterAllButton.addEventListener("click", () => {
+        displayAllContacts();
+    });
+
+    filterFamilyButton.addEventListener("click", () => {
+        displayFamilyContacts();
+    });
+
+    filterFriendButton.addEventListener("click", () => {
+        displayFriendContacts();
+    });
+
+    filterRelativesButton.addEventListener("click", () => {
+        displayRelativeContacts();
+    });
+
+    function displayAllContacts() {
+        friendContacts.style.display = "block";
+        familyContacts.style.display = "block";
+        relativeContacts.style.display = "block";
+    }
+
+    function displayFamilyContacts() {
+        friendContacts.style.display = "none";
+        familyContacts.style.display = "block";
+        relativeContacts.style.display = "none";
+    }
+
+    function displayFriendContacts() {
+        friendContacts.style.display = "block";
+        familyContacts.style.display = "none";
+        relativeContacts.style.display = "none";
+    }
+
+    function displayRelativeContacts() {
+        friendContacts.style.display = "none";
+        familyContacts.style.display = "none";
+        relativeContacts.style.display = "block";
+    }
+
+    // Initially, show all contacts
+    displayAllContacts();
+</script>
 </body>
 </html>
