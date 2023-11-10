@@ -32,11 +32,23 @@
         .card-body {
             padding: 10px;
         }
+		.family-heading,
+    .friend-heading,
+    .relatives-heading {
+        display: none;
+    }
+
+    .filter-active .family-heading.filter-active,
+    .filter-active .friend-heading.filter-active,
+    .filter-active .relatives-heading.filter-active {
+        display: block;
+    }
     </style>
 </head>
 <body>
 <div class="container">
-    <h1 align="center">Contact List</h1>
+    <h1 id="contactListHeading" class="family-heading friend-heading relatives-heading" align="center">All Contacts</h1>
+
     <div class="col-md-6">
         <hr />
         <!-- Filter Buttons for Categories -->
@@ -64,7 +76,7 @@
     </div>
     <hr />
     <!-- Friend Section -->
-    <h2>Friend</h2>
+    <h2 class="friend-heading">Friend</h2>
     <div class="row" id="friendContacts">
         <!-- Contact Cards for Friends -->
         <!-- Add more contact cards for friends as needed -->
@@ -81,7 +93,7 @@
         <!-- Add more contact cards for friends as needed -->
     </div>
     <!-- Family Section -->
-    <h2>Family</h2>
+   <h2 class="family-heading">Family</h2>
     <div class="row" id="familyContacts">
         <!-- Contact Cards for Family -->
         <!-- Add more contact cards for family as needed -->
@@ -128,7 +140,7 @@
         </div>
     </div>
     <!-- Relatives Section -->
-    <h2>Relatives</h2>
+    <h2 class="relatives-heading">Relatives</h2>
     <div class="row" id="relativeContacts">
         <!-- Contact Cards for Relatives -->
         <!-- Add more contact cards for relatives as needed -->
@@ -213,54 +225,69 @@ searchInput.addEventListener("input", () => {
  
 
     // Function to display contacts based on category
-    // Function to display contacts based on category
-    const filterAllButton = document.getElementById("filterAll");
-    const filterFamilyButton = document.getElementById("filterFamily");
-    const filterFriendButton = document.getElementById("filterFriend");
-    const filterRelativesButton = document.getElementById("filterRelatives");
+  const filterAllButton = document.getElementById("filterAll");
+const filterFamilyButton = document.getElementById("filterFamily");
+const filterFriendButton = document.getElementById("filterFriend");
+const filterRelativesButton = document.getElementById("filterRelatives");
 
-    filterAllButton.addEventListener("click", () => {
-        displayAllContacts();
-    });
+const contactListHeading = document.getElementById("contactListHeading");
 
-    filterFamilyButton.addEventListener("click", () => {
-        displayFamilyContacts();
-    });
-
-    filterFriendButton.addEventListener("click", () => {
-        displayFriendContacts();
-    });
-
-    filterRelativesButton.addEventListener("click", () => {
-        displayRelativeContacts();
-    });
-
-    function displayAllContacts() {
-        friendContacts.style.display = "block";
-        familyContacts.style.display = "block";
-        relativeContacts.style.display = "block";
-    }
-
-    function displayFamilyContacts() {
-        friendContacts.style.display = "none";
-        familyContacts.style.display = "block";
-        relativeContacts.style.display = "none";
-    }
-
-    function displayFriendContacts() {
-        friendContacts.style.display = "block";
-        familyContacts.style.display = "none";
-        relativeContacts.style.display = "none";
-    }
-
-    function displayRelativeContacts() {
-        friendContacts.style.display = "none";
-        familyContacts.style.display = "none";
-        relativeContacts.style.display = "block";
-    }
-
-    // Initially, show all contacts
+filterAllButton.addEventListener("click", () => {
     displayAllContacts();
+    updateHeading("All Contacts", "");
+});
+
+filterFamilyButton.addEventListener("click", () => {
+    displayFamilyContacts();
+    updateHeading("Family", "family-heading");
+});
+
+filterFriendButton.addEventListener("click", () => {
+    displayFriendContacts();
+    updateHeading("Friend", "friend-heading");
+});
+
+filterRelativesButton.addEventListener("click", () => {
+    displayRelativeContacts();
+    updateHeading("Relatives", "relatives-heading");
+});
+
+
+function displayAllContacts() {
+    friendContacts.style.display = "block";
+    familyContacts.style.display = "block";
+    relativeContacts.style.display = "block";
+}
+
+function displayFamilyContacts() {
+    friendContacts.style.display = "none";
+    familyContacts.style.display = "block";
+    relativeContacts.style.display = "none";
+}
+
+function displayFriendContacts() {
+    friendContacts.style.display = "block";
+    familyContacts.style.display = "none";
+    relativeContacts.style.display = "none";
+}
+
+function displayRelativeContacts() {
+    friendContacts.style.display = "none";
+    familyContacts.style.display = "none";
+    relativeContacts.style.display = "block";
+}
+
+function updateHeading(headingText, categoryClass) {
+    contactListHeading.textContent = headingText;
+    contactListHeading.className = `filter-active ${categoryClass}`;
+}
+
+
+// Initially, show all contacts and set the initial heading
+displayAllContacts();
+updateHeading("All Contacts");
 </script>
+
+<!-- ... (remaining HTML code) ... -->
 </body>
 </html>
