@@ -3,7 +3,7 @@
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Contact List(c)</title>
+    <title>Contact List(p)</title>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />
     <style>
@@ -76,8 +76,9 @@
     </div>
     <hr />
     <!-- Friend Section -->
-    <h2 class="friend-heading">Friend</h2>
+   
     <div class="row" id="friendContacts">
+	<h2> Friend</h2>
         <!-- Contact Cards for Friends -->
         <!-- Add more contact cards for friends as needed -->
         <div class="card contact-card mb-3">
@@ -93,8 +94,9 @@
         <!-- Add more contact cards for friends as needed -->
     </div>
     <!-- Family Section -->
-   <h2 class="family-heading">Family</h2>
+   
     <div class="row" id="familyContacts">
+	<h2> Family</h2>
         <!-- Contact Cards for Family -->
         <!-- Add more contact cards for family as needed -->
         <div class="card contact-card mb-3">
@@ -140,10 +142,11 @@
         </div>
     </div>
     <!-- Relatives Section -->
-    <h2 class="relatives-heading">Relatives</h2>
+    
     <div class="row" id="relativeContacts">
         <!-- Contact Cards for Relatives -->
         <!-- Add more contact cards for relatives as needed -->
+		<h2> Relative</h2>
         <div class="card contact-card mb-3">
             <div class="card-body">
                 <h5 class="card-title">Abuu</h5>
@@ -266,6 +269,7 @@ function displayFamilyContacts() {
 }
 
 function displayFriendContacts() {
+     
     friendContacts.style.display = "block";
     familyContacts.style.display = "none";
     relativeContacts.style.display = "none";
@@ -276,11 +280,11 @@ function displayRelativeContacts() {
     familyContacts.style.display = "none";
     relativeContacts.style.display = "block";
 }
-
-function updateHeading(headingText, categoryClass) {
+function updateHeading(headingText, categoryClass = "") {
     contactListHeading.textContent = headingText;
     contactListHeading.className = `filter-active ${categoryClass}`;
 }
+
 
 
 // Initially, show all contacts and set the initial heading
