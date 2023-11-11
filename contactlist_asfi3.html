@@ -38,8 +38,8 @@
    
     z-index: 100;
     width: 100%; /* Adjust the width as needed */
-    height: 100px;
-    background-image: url(pawel-czerwinski--0xCCPIbl3M-unsplash.jpg);
+    height: 150px;
+    background-image: url(bang.jpg);
     background-position: center;
     background-size: cover;
     text-align: left;
@@ -242,7 +242,9 @@
             </button>
         </div>
     </div>
+	<div id="noMatchesMessage" style="display: none; color: red;"> <h2 align="center"> No matches found</h2>   </div>
 </div>
+
 <script>
 // Function to search and filter contacts by name or number
  // Function to search and filter contacts by name or number
@@ -257,10 +259,11 @@ const originalContactList = {
     family: familyContacts.innerHTML,
     relatives: relativeContacts.innerHTML,
 };
-
+   
 searchInput.addEventListener("input", () => {
-    const searchTerm = searchInput.value.toLowerCase();
-
+      
+      const searchTerm = searchInput.value.toLowerCase();
+      let array=[];
     // Function to show or hide contact cards based on the search term
     function filterContacts(container, sectionName, searchTerm) {
         const contactCards = container.getElementsByClassName("card");
@@ -276,8 +279,10 @@ searchInput.addEventListener("input", () => {
 
             if (cardTitle.includes(searchTerm) || cardPhone.includes(searchTerm)) {
                 matches.push(card);
+				array.push(card);
             }
         }
+		
 
         // Create a new container for the matching cards
         const newContainer = document.createElement("div");
@@ -305,9 +310,20 @@ searchInput.addEventListener("input", () => {
     filterContacts(friendContacts, "friend", searchTerm);
     filterContacts(familyContacts, "family", searchTerm);
     filterContacts(relativeContacts, "relatives", searchTerm);
+	if (searchTerm === "") {
+		noMatchesMessage.style.display = "none";	
+        }
+		else
+		{
+		 noMatchesMessage.style.display = array.length === 0 ? "block" : "none";
+		}
+		
 });
 
-
+window.onload = function () {
+    console.log("Page loaded, resetting search input.");
+    searchInput.value = "";
+}
  
 
     // Function to display contacts based on category
