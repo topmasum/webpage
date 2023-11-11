@@ -44,7 +44,7 @@
     background-size: cover;
     text-align: left;
     color: white;
-	
+	transition: top 0.3s ease-in-out;
 }
 
     </style>
@@ -249,6 +249,18 @@
 <script>
 // Function to search and filter contacts by name or number
  // Function to search and filter contacts by name or number
+ var prevScrollPos = window.pageYOffset;
+        var header = document.getElementById("allContactsHeading");
+
+        window.onscroll = function() {
+            var currentScrollPos = window.pageYOffset;
+            if (prevScrollPos > currentScrollPos) {
+                header.style.top = "0";
+            } else {
+                header.style.top = "-150px"; // Adjust the negative value to hide more or less of the image
+            }
+            prevScrollPos = currentScrollPos;
+        };
 const searchInput = document.getElementById("searchInput");
 const friendContacts = document.getElementById("friendContacts");
 const familyContacts = document.getElementById("familyContacts");
