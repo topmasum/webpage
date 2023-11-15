@@ -39,13 +39,22 @@
     z-index: 100;
     width: 100%; /* Adjust the width as needed */
     height: 150px;
-    background-image: url('COntact list -emtiaz2.jpg');
+    background-image: url('Contact list blue.png');
     background-position: center;
-    background-size: 100% 100%;
+	
+    background-size: cover;
+	background-repeat:no-repeat;
     text-align: left;
     color: white;
 	transition: top 0.3s ease-in-out;
 }
+@media (max-width: 767px) {
+    #allContactsHeading {
+        background-size: contain; /* or auto, depending on your preference */
+        background-attachment: scroll; /* Remove fixed attachment for smaller screens */
+    }
+}
+
 
     </style>
 </head>
