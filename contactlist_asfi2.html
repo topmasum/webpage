@@ -60,7 +60,7 @@
             position: absolute;
             top: 70px;
             right: 10px;
-            width: 50%; /* Set the width to 50% of the container */
+            width: 40%; /* Set the width to 50% of the container */
         }
 
         
@@ -103,15 +103,65 @@
         /* add marging below */
         margin-bottom: 50px;
       }
+	  .header-icon {
+        margin-top: 10px;
+        margin-bottom: 10px;
+        margin-right: 10px;
+        margin-left: 30px;
+        padding: 10px;
+        
+        border-radius: 20%;
+        max-height: 120px;
+        max-width: 120px;
+        /* add telephone shake animation */
+        animation: shake .5s;
+        animation-iteration-count: 2;
+      }
+	   @keyframes shake {
+        0% {
+          transform: translate(0, 0) rotate(0);
+        }
+        10% {
+          transform: translate(-10px, 0) rotate(-5deg);
+        }
+        20% {
+          transform: translate(10px, 0) rotate(5deg);
+        }
+        30% {
+          transform: translate(-10px, 0) rotate(-5deg);
+        }
+        40% {
+          transform: translate(10px, 0) rotate(5deg);
+        }
+        50% {
+          transform: translate(-10px, 0) rotate(-5deg);
+        }
+        60% {
+          transform: translate(10px, 0) rotate(5deg);
+        }
+        70% {
+          transform: translate(-10px, 0) rotate(-5deg);
+        }
+        80% {
+          transform: translate(10px, 0) rotate(5deg);
+        }
+        90% {
+          transform: translate(-10px, 0) rotate(-5deg);
+        }
+        100% {
+          transform: translate(0, 0) rotate(0);
+        }
+      }
 
     </style>
 </head>
  <body>
  <div id="allContactsHeading" style="top: 0px">
+ <img src="Untitled design.png" class="header-icon">
        <div id="searchbar" class="input-group mb-3">
           <input
             type="text"
-            class="form-control"
+            class="form-control rounded-pill border-0 py-2 px-3"
             placeholder="Search for a contact by name or phone number"
             id="searchInput" />
                <div class="input-group-append">
@@ -120,9 +170,10 @@
                       
                  </div>   
       </div>	
+	  <br />
     <div class="container">   
  
-	  <hr>
+	  
 	 <div class="row row-cols-3">          
         <div class="col text-right">
         <div class="btn-group">
@@ -134,7 +185,7 @@
         </div>
           
 	  </div>	  
-      <hr />
+     
       <!-- Friend Section -->
 
       <div class="row" id="friendContacts" style="display: block">
