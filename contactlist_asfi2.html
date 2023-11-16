@@ -7,7 +7,12 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />
     <style>
-	
+	body {
+    background: linear-gradient(to bottom, #C70039, #900C3F, #581845);
+    height: 100%;
+	width:100%;
+    margin: 0; /* Add this line to remove default margin */
+}
         .contact-card {
             border: 2px solid #007bff;
             border-radius: 10px;
@@ -40,22 +45,14 @@
     z-index: 100;
     width: 100%;
     height: 150px; /* Adjust the height for both mobile and PC screens */
-    background: linear-gradient(to bottom, #C70039, #900C3F,#581845);
     background-position: center;
-    background-size: 100% 100%; /* or contain, depending on your preference */
+   /* or contain, depending on your preference */
     text-align: left;
     color: white;
     transition: top 0.3s ease-in-out;
 }
 
-@media (max-width: 727px) {
-    #allContactsHeading {
-         /* Adjust the height for smaller screens */
-		 
-        background-size:contain;
-		background-repeat:no-repeat;
-    }
-}
+
  #searchbar {
             position: absolute;
             top: 70px;
@@ -76,6 +73,7 @@
     </style>
 </head>
  <body>
+    <div class="container">   
  <div id="allContactsHeading" style="top: 0px">
        <div id="searchbar" class="input-group mb-3">
           <input
@@ -88,15 +86,9 @@
                     </div>
                       
                  </div>   
-      </div>
-    <div class="container">
-      
+      </div>	
 	  <hr>
-	 <div class="row row-cols-3"> 
-        <!-- Filter Buttons for Categories -->
-		
-		   
-          
+	 <div class="row row-cols-3">          
         <div class="col text-right">
         <div class="btn-group">
           <button id="filterAll" class="btn btn-primary">All</button>
@@ -106,10 +98,7 @@
         </div>
         </div>
           
-	  </div>
-	 
-	 
-	  
+	  </div>	  
       <hr />
       <!-- Friend Section -->
 
