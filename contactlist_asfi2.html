@@ -7,43 +7,39 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />
     <style>
-	body {
-    background: linear-gradient(to bottom, #C70039, #900C3F, #581845);
-    height: 100%;
-	width:100%;
-    margin: 0; /* Add this line to remove default margin */
-}
+	
         .contact-card {
-            border: 2px solid #007bff;
+            border: 2px solid #C70039;
             border-radius: 10px;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.5);
             height: 150px; /* Set the height to 180px */
 			width: 300px;
             margin: 10px;
             display: inline-block;
         }
+		.contact-card:hover {
+        box-shadow: 0 8px 12px rgba(0, 0, 0, 0.3);
+      }
         .call-button {
             position: absolute;
             bottom: 10px;
             right: 10px;
         }
         .phone-icon {
-            color: #007bff;
+            color: solid #C70039;
         }
-        /* Override Bootstrap card classes */
-        .card {
-            border: solid #007bff;
-            border-radius: 0;
-        }
+       
         .card-body {
             padding: 10px;
         }
+		
 	#allContactsHeading {
 	margin-right:0;
     position: sticky;
     top: 5px;
     z-index: 100;
     width: 100%;
+	background: linear-gradient(to bottom, #C70039, #900C3F, #581845);
     height: 150px; /* Adjust the height for both mobile and PC screens */
     background-position: center;
    /* or contain, depending on your preference */
@@ -51,7 +47,14 @@
     color: white;
     transition: top 0.3s ease-in-out;
 }
+@media (max-width: 727px) {
+        #allContactsHeading {
+          /* Adjust the height for smaller screens */
 
+          background-size: contain;
+          background-repeat: no-repeat;
+        }
+      }
 
  #searchbar {
             position: absolute;
@@ -67,13 +70,43 @@
             right: 30px; /* Adjust the right value to place the icon where you want */
             top: 50px; /* Adjust the top value to vertically align the icon */
         }
+#filterAll,
+#filterFamily,
+#filterFriend,
+#filterRelatives {
+    background: linear-gradient(to bottom, #C70039, #900C3F, #581845);
+    border: 1px solid #C70039;
+}
 
+#filterAll:hover,
+#filterFamily:hover,
+#filterFriend:hover,
+#filterRelatives:hover {
+    background: linear-gradient(to bottom, #900C3F, #581845, #C70039);
+}
 
+ .btn-primary {
+        background: linear-gradient(to bottom, #C70039, #900C3F, #581845);
+        border: 1px solid #C70039;
+      }
+      .btn-primary:hover {
+        background: linear-gradient(to bottom, #900C3F, #581845, #C70039);
+      }
+      .btn:focus {
+          box-shadow: 0 0 0 0.2rem rgba(137, 23, 75, 0.5);
+        }
+ h2 {
+        color: #581845;
+        font-weight: bold;
+      }
+	  .row {
+        /* add marging below */
+        margin-bottom: 50px;
+      }
 
     </style>
 </head>
  <body>
-    <div class="container">   
  <div id="allContactsHeading" style="top: 0px">
        <div id="searchbar" class="input-group mb-3">
           <input
@@ -87,6 +120,8 @@
                       
                  </div>   
       </div>	
+    <div class="container">   
+ 
 	  <hr>
 	 <div class="row row-cols-3">          
         <div class="col text-right">
@@ -112,7 +147,7 @@
             <p class="card-text">Phone: 242424242</p>
             <p class="card-text">Relationship: Friend</p>
           </div>
-          <button class="call-button btn btn-primary">
+          <button class="call-button btn btn-primary" >
             <i class="fa fa-address-book"></i>
           </button>
         </div>
