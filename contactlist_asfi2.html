@@ -62,9 +62,6 @@
             right: 10px;
             width: 40%; /* Set the width to 50% of the container */
         }
-
-        
-
         #searchIcon {
             position: absolute;
             right: 30px; /* Adjust the right value to place the icon where you want */
@@ -116,7 +113,18 @@
         /* add telephone shake animation */
         animation: shake .5s;
         animation-iteration-count: 2;
+		animation: slideIn 1s ease-out forwards;
       }
+	 @keyframes slideIn {
+  0% {
+    transform: translateX(-120px);
+    opacity: 0;
+  }
+  100% {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
 	   @keyframes shake {
         0% {
           transform: translate(0, 0) rotate(0);
@@ -152,12 +160,26 @@
           transform: translate(0, 0) rotate(0);
         }
       }
+	  /* Add this CSS code for animation */
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+.contact-card {
+  animation: fadeIn 1s ease-out; /* Adjust the animation duration and timing function as needed */
+}
+
 
     </style>
 </head>
  <body>
  <div id="allContactsHeading" style="top: 0px">
- <img src="Untitled design.png" class="header-icon">
+ <img src="Contactlist2.png" class="header-icon">
        <div id="searchbar" class="input-group mb-3">
           <input
             type="text"
