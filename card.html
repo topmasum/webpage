@@ -60,9 +60,10 @@
             position: absolute;
             top: 70px;
             right: 10px;
-            width: 40%; /* Set the width to 50% of the container */
+            width: 5%; /* Set the width to 50% of the container */
 			border-radius: 20px;
-			
+			transition: width 0.3s ease-in-out; /* Add transition for smooth effect */
+    overflow: hidden; /* Hide overflow content */
         }
         #searchIcon {
     position: absolute;
@@ -70,7 +71,14 @@
     top: 50%;
     transform: translateY(-50%); /* Center the icon vertically */
     border-radius: 20px;
-	 
+	 cursor: pointer;
+}
+#searchbar:hover {
+    width: 40%; /* Expand the search bar on hover */
+}
+
+#searchIcon:hover + #searchbar {
+    width: 40%; /* Expand the search bar when the icon is hovered */
 }
 		#searchbar input.form-control {
   border-radius: 20px;
@@ -151,7 +159,7 @@
 </head>
  <body>
   <div id="allContactsHeading" style="top: 0px">
-        <img src="Contactlist2.png" class="header-icon">
+        <img src="Contactlist3.png" class="header-icon">
         <div id="searchbar" class="input-group mb-3">
             <input
                 type="text"
@@ -179,34 +187,7 @@
         </div>
           
 	  </div>	
-<div class="row">
-            
-            <div id="friendContacts" class="row row-cols-3">
-                <!-- Friend contact cards will be dynamically generated here -->
-            </div>
-        </div>
-
-        <!-- Family Section -->
-        <div class="row">
-            
-            <div id="familyContacts" class="row row-cols-3">
-                <!-- Family contact cards will be dynamically generated here -->
-            </div>
-        </div>
-
-        <!-- Relatives Section -->
-        <div class="row">
-           
-            <div id="relativeContacts" class="row row-cols-3">
-                <!-- Relatives contact cards will be dynamically generated here -->
-            </div>
-        </div>
-	
-		  
-     
-      <!-- Friend Section -->
-
-      
+    
     <div id="contactCardsContainer" class="row">
       <!-- Cards will be dynamically generated here -->
     </div>
@@ -234,15 +215,29 @@
 			{name: 'Samiul' , phone:'01999876355' , relationship: 'Relatives'},
 			{name: 'Easin' , phone:'01710811111' , relationship: 'Family'},
 			{name: 'Sogir mama' , phone:'0175656565' , relationship: 'Relatives'},
-			{name: 'Disha' , phone:'0123456789' , relationship: 'Friend'}
+			{name: 'Disha' , phone:'0123456789' , relationship: 'Friend'},
+			{name: 'Dishani' , phone:'0188456789' , relationship: 'Cousin'},
+			{name: 'Shohan' , phone:'0188777777' , relationship: 'Flat'}
             // Add more contacts as needed
         ];
-
+    const uniqueCategories = [...new Set(contacts.map(contact => contact.relationship))];
         // Function to dynamically generate contact cards
-        function generateContactCards(containerId, category) {
+        
+ uniqueCategories.forEach(category => {
+            const sectionId = `${category.toLowerCase()}Contacts`;
+            const sectionContainer = document.createElement('div');
+            sectionContainer.id = sectionId;
+            sectionContainer.className = 'row row-cols-3';
+            document.body.appendChild(sectionContainer);
+            const heading = document.createElement('h2');
+        heading.textContent = category;
+        sectionContainer.appendChild(heading);
+            // Generate contact cards for each category
+            generateContactCards(sectionId, category);
+        });
+		function generateContactCards(containerId, category) {
             const container = document.getElementById(containerId);
             container.innerHTML = ''; // Clear existing content
-
             contacts.forEach(contact => {
                 if (contact.relationship === category || category === 'All') {
                     const card = document.createElement('div');
@@ -285,11 +280,21 @@
         generateContactCards('friendContacts', 'Friend');
         generateContactCards('familyContacts', 'Family');
         generateContactCards('relativeContacts', 'Relatives');
+		
 
         // Function to update contact cards based on the selected category
         function updateContactCards(category) {
             generateContactCards(`${category.toLowerCase()}Contacts`, category);
         }
+		const filterButtonsContainer = document.querySelector('.btn-group');
+    uniqueCategories.forEach(category => {
+        const filterButton = document.createElement('button');
+        filterButton.id = `filter${category}`;
+        filterButton.className = 'btn btn-primary';
+        filterButton.textContent = category;
+        filterButton.addEventListener('click', () => updateContactCards(category));
+        filterButtonsContainer.appendChild(filterButton);
+    });
 
       var prevScrollPos = window.pageYOffset;
       var header = document.getElementById("allContactsHeading");
