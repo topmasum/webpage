@@ -177,14 +177,7 @@
 	  <br />
     <div class="container">
  <div class="row row-cols-3">          
-        <div class="col text-right">
-        <div class="btn-group">
-          <button id="filterAll" class="btn btn-primary">All</button>
-          <button id="filterFamily" class="btn btn-primary">Family</button>
-          <button id="filterFriend" class="btn btn-primary">Friend</button>
-          <button id="filterRelatives" class="btn btn-primary">Relatives</button>
-        </div>
-        </div>
+       
           
 	  </div>	
     
@@ -222,21 +215,44 @@
         ];
     const uniqueCategories = [...new Set(contacts.map(contact => contact.relationship))];
         // Function to dynamically generate contact cards
+		 function generateFilterButtons() {
+            const filterButtonContainer = document.querySelector('.row.row-cols-3');
+            
+            uniqueCategories.forEach(category => {
+                const filterButton = document.createElement('button');
+                filterButton.className = 'btn btn-primary';
+                filterButton.textContent = category;
+                filterButton.addEventListener('click', () => updateContactCards(category));
+                filterButtonContainer.appendChild(filterButton);
+            });
+        }
         
- uniqueCategories.forEach(category => {
-            const sectionId = `${category.toLowerCase()}Contacts`;
-            const sectionContainer = document.createElement('div');
-            sectionContainer.id = sectionId;
-            sectionContainer.className = 'row row-cols-3';
-            document.body.appendChild(sectionContainer);
-            const heading = document.createElement('h2');
+  uniqueCategories.forEach(category => {
+        const sectionId = `${category.toLowerCase()}Contacts`;
+        const container = document.createElement('div');
+        container.className = 'container';
+
+        const rowHeading = document.createElement('div');
+        rowHeading.className = 'row';
+        const heading = document.createElement('h2');
         heading.textContent = category;
-        sectionContainer.appendChild(heading);
-            // Generate contact cards for each category
-            generateContactCards(sectionId, category);
-        });
+        rowHeading.appendChild(heading);
+
+        const rowContacts = document.createElement('div');
+        rowContacts.className = 'row row-cols-3';
+        rowContacts.id = sectionId;
+
+        container.appendChild(rowHeading);
+        container.appendChild(rowContacts);
+
+        document.body.appendChild(container);
+
+        generateContactCards(sectionId, category);
+    });
+
 		function generateContactCards(containerId, category) {
             const container = document.getElementById(containerId);
+			 
             container.innerHTML = ''; // Clear existing content
             contacts.forEach(contact => {
                 if (contact.relationship === category || category === 'All') {
@@ -271,30 +287,18 @@
                     container.appendChild(card);
                 }
             });
-            const heading = document.createElement('h2');
-            heading.textContent = category === 'All' ? 'All Contacts' : category;
-            container.insertBefore(heading, container.firstChild);
+           
         }
 
         // Display all contacts initially
-        generateContactCards('friendContacts', 'Friend');
-        generateContactCards('familyContacts', 'Family');
-        generateContactCards('relativeContacts', 'Relatives');
-		
+        
+		 generateFilterButtons();
 
         // Function to update contact cards based on the selected category
         function updateContactCards(category) {
             generateContactCards(`${category.toLowerCase()}Contacts`, category);
         }
-		const filterButtonsContainer = document.querySelector('.btn-group');
-    uniqueCategories.forEach(category => {
-        const filterButton = document.createElement('button');
-        filterButton.id = `filter${category}`;
-        filterButton.className = 'btn btn-primary';
-        filterButton.textContent = category;
-        filterButton.addEventListener('click', () => updateContactCards(category));
-        filterButtonsContainer.appendChild(filterButton);
-    });
+		
 
       var prevScrollPos = window.pageYOffset;
       var header = document.getElementById("allContactsHeading");
