@@ -315,42 +315,95 @@
     });
     filterButtonsContainer.appendChild(filterButton);
   });
+ // Function to dynamically generate contact cards
+function generateContactCards2(containerId, category, matchingContacts) {
+  const container = document.createElement("div");
+  container.id = containerId;
+  container.className = "row";
+  contactCardsContainer.appendChild(container);
 
-  const searchInput = document.getElementById("searchInput");
-  const noMatchesMessage = document.getElementById("noMatchesMessage");
+  matchingContacts.forEach((contact) => {
+    const card = document.createElement("div");
+    card.className = "card contact-card mb-3";
 
-  function filterContacts(searchTerm) {
-    contactCardsContainer.innerHTML = ""; // Clear the current content
+    const cardBody = document.createElement("div");
+    cardBody.className = "card-body";
 
-    if (searchTerm.trim() === "") {
-      // If search bar is empty, show all contacts
-      uniqueCategories.forEach((category) => {
-        updateContactCards(category);
-      });
-      noMatchesMessage.style.display = "none";
-    } else {
-      // Filter and display matching contacts
-      const matchingContacts = contacts.filter((contact) =>
-        contact.name.toLowerCase().includes(searchTerm.toLowerCase())
+    const title = document.createElement("h5");
+    title.className = "card-title";
+    title.textContent = contact.name;
+
+    const phone = document.createElement("p");
+    phone.className = "card-text";
+    phone.textContent = `Phone: ${contact.phone}`;
+
+    const relationship = document.createElement("p");
+    relationship.className = "card-text";
+    relationship.textContent = `Relationship: ${contact.relationship}`;
+
+    const callButton = document.createElement("button");
+    callButton.className = "call-button btn btn-primary";
+    callButton.innerHTML = '<i class="fa fa-address-book"></i>';
+
+    cardBody.appendChild(title);
+    cardBody.appendChild(phone);
+    cardBody.appendChild(relationship);
+    card.appendChild(cardBody);
+    card.appendChild(callButton);
+
+    container.appendChild(card);
+  });
+
+  const heading = document.createElement("h2");
+  heading.textContent = category === "All" ? "All Contacts" : category;
+  container.insertBefore(heading, container.firstChild);
+}
+
+document.getElementById("searchInput").addEventListener("input", function () {
+  const searchTerm = this.value.toLowerCase();
+
+  // Clear previous search results
+  contactCardsContainer.innerHTML = "";
+
+  // Filter contacts based on search term
+  const filteredContacts = contacts.filter(
+    (contact) =>
+      contact.name.toLowerCase().includes(searchTerm) ||
+      contact.phone.includes(searchTerm)
+  );
+
+  // Display matching cards and categories
+  if (searchTerm !== "") {
+    uniqueCategories.forEach((category) => {
+      const matchingContacts = filteredContacts.filter(
+        (contact) => contact.relationship === category
       );
 
       if (matchingContacts.length > 0) {
-        matchingContacts.forEach((contact) => {
-          const category = contact.relationship;
-          updateContactCards(category, matchingContacts);
-        });
-        noMatchesMessage.style.display = "none";
-      } else {
-        // No matches found
-        noMatchesMessage.style.display = "block";
+        generateContactCards2(
+          `${category.toLowerCase()}Contacts`,
+          category,
+          matchingContacts
+        );
       }
-    }
+    });
+  } else {
+    // If search bar is empty, display all contacts and categories
+    uniqueCategories.forEach((category) => {
+      generateContactCards2(
+        `${category.toLowerCase()}Contacts`,
+        category,
+        contacts.filter((contact) => contact.relationship === category)
+      );
+    });
   }
 
-  searchInput.addEventListener("input", function () {
-    const searchTerm = this.value;
-    filterContacts(searchTerm);
-  });
+  // Display "No matches found" message if there are no matching contacts
+  const noMatchesMessage = document.getElementById("noMatchesMessage");
+  noMatchesMessage.style.display =
+    filteredContacts.length === 0 && searchTerm !== "" ? "block" : "none";
+});
+
 
 
     </script>
