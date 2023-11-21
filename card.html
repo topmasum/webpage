@@ -12,6 +12,21 @@
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
     />
+	<!-- Bootstrap CSS -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" />
+
+<!-- Font Awesome CSS -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />
+
+<!-- Bootstrap JS and Popper.js -->
+<!-- Bootstrap JS and Popper.js -->
+<!-- Bootstrap JS and Popper.js -->
+<script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+
+
+
     <style>
       .contact-card {
         border: 2px solid #c70039;
@@ -65,7 +80,7 @@
         position: absolute;
         top: 70px;
         right: 10px;
-        width: 5%; /* Set the width to 50% of the container */
+        width: 40%; /* Set the width to 50% of the container */
         border-radius: 20px;
         transition: width 0.3s ease-in-out; /* Add transition for smooth effect */
         overflow: hidden; /* Hide overflow content */
@@ -89,30 +104,13 @@
         border-radius: 20px;
         /* Override the border-radius for the form-control class */
       }
-      #filterAll,
-      #filterFamily,
-      #filterFriend,
-      #filterRelatives {
-        background: linear-gradient(to bottom, #c70039, #900c3f, #581845);
-        border: 1px solid #c70039;
-        transition: transform 0.3s ease-in-out;
-      }
-
-      #filterAll:hover,
-      #filterFamily:hover,
-      #filterFriend:hover,
-      #filterRelatives:hover {
-        background: linear-gradient(to bottom, #900c3f, #581845, #c70039);
-        transform: scale(1.1);
-      }
+     
 
       .btn-primary {
         background: linear-gradient(to bottom, #c70039, #900c3f, #581845);
         border: 1px solid #c70039;
       }
-      .btn-primary:hover {
-        background: linear-gradient(to bottom, #900c3f, #581845, #c70039);
-      }
+      
       .btn:focus {
         box-shadow: 0 0 0 0.2rem rgba(137, 23, 75, 0.5);
       }
@@ -164,6 +162,12 @@
       .contact-card {
         animation: fadeIn 1s ease-out; /* Adjust the animation duration and timing function as needed */
       }
+	   
+
+  .dropdown-item:hover {
+    background: linear-gradient(to bottom, #c70039, #900c3f, #581845);
+    color: white;
+  }
     </style>
   </head>
   <body>
@@ -185,9 +189,26 @@
     </div>
     <br />
     <div class="container">
-      <div class="row row-cols-3">
+        <div class="row">
         <div class="col text-right">
-          <div class="btn-group"></div>
+		 <div class="dropdown" style="position: absolute; top: 10px; right: 10px;">
+       <button
+  class="btn btn-secondary dropdown-toggle"
+  type="button"
+  id="filterDropdownButton"
+  data-toggle="dropdown"
+  style="background: linear-gradient(to bottom, #c70039, #900c3f, #581845); border: 1px solid #c70039;"
+>
+  Filter button
+</button>
+
+
+        <div class="dropdown-menu" aria-labelledby="filterDropdownButton">
+          <a class="dropdown-item" href="#" id="filterAll">All</a>
+          <!-- Dynamically generate filter buttons for each category -->
+          <!-- You can use JavaScript to populate this part -->
+        </div>
+      </div>
         </div>
       </div>
 
@@ -203,6 +224,7 @@
     <script>
       // Function to search and filter contacts by name or number
       // Function to search and filter contacts by name or number
+	   document.addEventListener("DOMContentLoaded", function () {
       const contacts = [
         { name: "Masum", phone: "0142424242", relationship: "Friend" },
         { name: "Masum 1", phone: "01641058008", relationship: "Friend" },
@@ -220,8 +242,8 @@
         { name: "Disha", phone: "0123456789", relationship: "Friend" },
         { name: "Dishani", phone: "0188456789", relationship: "Cousin" },
         { name: "Shohan", phone: "0188777777", relationship: "Flat" },
-        // { name: "Special", phone: "0188777777", relationship: "All" },
-        // Add more contacts as needed
+        {name: "Abil", phone: "0191111177", relationship: "Flat" },
+		{name: "Doakn", phone: "0153221277", relationship: "Shop" }
       ];
       const uniqueCategories = [
         ...new Set(contacts.map((contact) => contact.relationship)),
@@ -238,83 +260,78 @@
     generateContactCards(sectionId, category);
   });
 
-  function generateContactCards(containerId, category) {
-    const container = document.createElement("div");
-    container.id = containerId;
-    container.className = "row";
-    contactCardsContainer.appendChild(container);
+ // ...
 
-    contacts.forEach((contact) => {
-      if (contact.relationship === category) {
-        const card = document.createElement("div");
-        card.className = "card contact-card mb-3";
+function generateContactCards(containerId, category = "All") {
+  const container = document.createElement("div");
+  container.id = containerId;
+  container.className = "row";
+  contactCardsContainer.appendChild(container);
 
-        const cardBody = document.createElement("div");
-        cardBody.className = "card-body";
+  const filteredContacts = category === "All"
+    ? contacts
+    : contacts.filter((contact) => contact.relationship === category);
 
-        const title = document.createElement("h5");
-        title.className = "card-title";
-        title.textContent = contact.name;
+  filteredContacts.forEach((contact) => {
+    const card = document.createElement("div");
+    card.className = "card contact-card mb-3";
 
-        const phone = document.createElement("p");
-        phone.className = "card-text";
-        phone.textContent = `Phone: ${contact.phone}`;
+    const cardBody = document.createElement("div");
+    cardBody.className = "card-body";
 
-        const relationship = document.createElement("p");
-        relationship.className = "card-text";
-        relationship.textContent = `Relationship: ${contact.relationship}`;
+    const title = document.createElement("h5");
+    title.className = "card-title";
+    title.textContent = contact.name;
 
-        const callButton = document.createElement("button");
-        callButton.className = "call-button btn btn-primary";
-        callButton.innerHTML = '<i class="fa fa-address-book"></i>';
+    const phone = document.createElement("p");
+    phone.className = "card-text";
+    phone.textContent = `Phone: ${contact.phone}`;
 
-        cardBody.appendChild(title);
-        cardBody.appendChild(phone);
-        cardBody.appendChild(relationship);
-        card.appendChild(cardBody);
-        card.appendChild(callButton);
+    const relationship = document.createElement("p");
+    relationship.className = "card-text";
+    relationship.textContent = `Relationship: ${contact.relationship}`;
 
-        container.appendChild(card);
-      }
-    });
-    const heading = document.createElement("h2");
-    heading.textContent = category === "All" ? "All Contacts" : category;
-    container.insertBefore(heading, container.firstChild);
-  }
+    const callButton = document.createElement("button");
+    callButton.className = "call-button btn btn-primary";
+    callButton.innerHTML = '<i class="fa fa-address-book"></i>';
+
+    cardBody.appendChild(title);
+    cardBody.appendChild(phone);
+    cardBody.appendChild(relationship);
+    card.appendChild(cardBody);
+    card.appendChild(callButton);
+
+    container.appendChild(card);
+  });
+
+  const heading = document.createElement("h2");
+  heading.textContent = category === "All" ? "All Contacts" : category;
+  container.insertBefore(heading, container.firstChild);
+}
+
+// ...
+document.getElementById("filterAll").addEventListener("click", () => filterContacts("All"));
+function filterContacts(category) {
+  // Update the dropdown button text
+  document.getElementById("filterDropdownButton").innerText = category;
+
+  // Clear previous cards
+  contactCardsContainer.innerHTML = "";
+
+  // Generate cards for the selected category
+  generateContactCards(`${category.toLowerCase()}Contacts`, category);
+
+  // Close the dropdown menu after selecting a category
+  document.getElementById("filterDropdownButton").click();
+}
+
+
+
 
   function updateContactCards(category) {
     generateContactCards(`${category.toLowerCase()}Contacts`, category);
   }
-  const filterButtonsContainer = document.querySelector(".btn-group");
-  // add ALL button
-  const filterAllButton = document.createElement("button");
-  filterAllButton.id = "filterAll";
-  filterAllButton.className = "btn btn-primary";
-  filterAllButton.textContent = "All";
-  filterAllButton.addEventListener("click", () => {
-    // clear contactCardsContainer
-    contactCardsContainer.innerHTML = "";
-    console.log("clicked " + "All");
-    // add all cards with category name
-    uniqueCategories.forEach((category) => {
-      updateContactCards(category);
-    });
-  });
-  filterButtonsContainer.appendChild(filterAllButton);
-
-  uniqueCategories.forEach((category) => {
-    const filterButton = document.createElement("button");
-    filterButton.id = `filter${category}`;
-    filterButton.className = "btn btn-primary";
-    filterButton.textContent = category;
-    filterButton.addEventListener("click", () => {
-      // clear contactCardsContainer
-      contactCardsContainer.innerHTML = "";
-      updateContactCards(category);
-      console.log("clicked " + category);
-    });
-    filterButtonsContainer.appendChild(filterButton);
-  });
+  
  // Function to dynamically generate contact cards
 function generateContactCards2(containerId, category, matchingContacts) {
   const container = document.createElement("div");
@@ -403,6 +420,58 @@ document.getElementById("searchInput").addEventListener("input", function () {
   noMatchesMessage.style.display =
     filteredContacts.length === 0 && searchTerm !== "" ? "block" : "none";
 });
+
+
+  // ... Your existing code ...
+
+  // Function to dynamically generate filter buttons
+  function generateFilterButtons() {
+    const filterDropdownMenu = document.querySelector(".dropdown-menu");
+
+    uniqueCategories.forEach((category) => {
+      const filterButton = document.createElement("a");
+      filterButton.className = "dropdown-item filter-button";
+      filterButton.href = "#";
+      filterButton.textContent = category;
+      filterButton.addEventListener("click", () => filterContacts(category));
+      filterDropdownMenu.appendChild(filterButton);
+    });
+  }
+
+  generateFilterButtons();
+
+  function filterContacts(category) {
+    // Update the dropdown button text
+    document.getElementById("filterDropdownButton").innerText = category;
+
+    // Clear previous cards
+    contactCardsContainer.innerHTML = "";
+
+    if (category === "All") {
+      // If "All" is selected, display all contacts and categories
+      uniqueCategories.forEach((category) => {
+        generateContactCards(`${category.toLowerCase()}Contacts`, category);
+      });
+    } else {
+      // Generate cards for the selected category
+      generateContactCards(`${category.toLowerCase()}Contacts`, category);
+    }
+
+    // Close the dropdown menu after selecting a category
+    document.getElementById("filterDropdownButton").click();
+  }
+
+  // ... (your existing code for other functionalities)
+});
+  </script>
+</body>
+
+</html>
+
+
+
+
+
 
 
 
