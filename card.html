@@ -56,7 +56,7 @@
       #allContactsHeading {
         margin-right: 0;
         position: sticky;
-        top: 5px;
+        top: 10px;
         z-index: 100;
         width: 100%;
         background: linear-gradient(to bottom, #c70039, #900c3f, #581845);
@@ -225,6 +225,20 @@
       // Function to search and filter contacts by name or number
       // Function to search and filter contacts by name or number
 	   document.addEventListener("DOMContentLoaded", function () {
+	    const header = document.getElementById("allContactsHeading");
+  let lastScrollTop = 0;
+
+  window.addEventListener("scroll", function () {
+    const scrollTop = window.scrollY || document.documentElement.scrollTop;
+
+    if (lastScrollTop > scrollTop) {
+      header.style.top = "0";
+    } else {
+      header.style.top = "-150px"; // Adjust the negative value to hide more or less of the image
+    }
+    lastScrollTop = scrollTop;
+  });
+
       const contacts = [
         { name: "Masum", phone: "0142424242", relationship: "Friend" },
         { name: "Masum 1", phone: "01641058008", relationship: "Friend" },
@@ -460,7 +474,7 @@ document.getElementById("searchInput").addEventListener("input", function () {
     // Close the dropdown menu after selecting a category
     document.getElementById("filterDropdownButton").click();
   }
-
+ 
   // ... (your existing code for other functionalities)
 });
   </script>
