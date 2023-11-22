@@ -240,25 +240,26 @@
   });
 
       const contacts = [
-        { name: "Masum", phone: "0142424242,0198837454", relationship: "Friend" },
-        { name: "Masum 1", phone: "01641058008", relationship: "Friend" },
-        { name: "Asfi", phone: "0164434576", relationship: "Relatives" },
-        { name: "Ammu", phone: "01753872101", relationship: "Family" },
-        { name: "Abbu", phone: "01710876355", relationship: "Family" },
-        { name: "Minhaj", phone: "01576487021", relationship: "Family" },
-        { name: "Oishy", phone: "01710876355", relationship: "Friend" },
-        { name: "Imran", phone: "0172256431", relationship: "Friend" },
-        { name: "Rafi", phone: "01996534211", relationship: "Friend" },
-        { name: "Asad", phone: "01710875435", relationship: "Relatives" },
-        { name: "Samiul", phone: "01999876355", relationship: "Relatives" },
-        { name: "Easin", phone: "01710811111", relationship: "Family" },
-        { name: "Sogir mama", phone: "0175656565", relationship: "Relatives" },
-        { name: "Disha", phone: "0123456789", relationship: "Friend" },
-        { name: "Dishani", phone: "0188456789", relationship: "Cousin" },
-        { name: "Shohan", phone: "0188777777", relationship: "Flat" },
-        {name: "Abil", phone: "0191111177", relationship: "Flat" },
-		{name: "Doakn", phone: "0153221277", relationship: "Shop" }
-      ];
+  { name: "Masum", phones: ["0142424242", "0198837454"], relationship: "Friend" },
+  { name: "Masum 1", phones: ["01641058008"], relationship: "Friend" },
+  { name: "Asfi", phones: ["0164434576"], relationship: "Relatives" },
+  { name: "Ammu", phones: ["01753872101"], relationship: "Family" },
+  { name: "Abbu", phones: ["01710876355"], relationship: "Family" },
+  { name: "Minhaj", phones: ["01576487021"], relationship: "Family" },
+  { name: "Oishy", phones: ["01710876355"], relationship: "Friend" },
+  { name: "Imran", phones: ["0172256431"], relationship: "Friend" },
+  { name: "Rafi", phones: ["01996534211"], relationship: "Friend" },
+  { name: "Asad", phones: ["01710875435"], relationship: "Relatives" },
+  { name: "Samiul", phones: ["01999876355"], relationship: "Relatives" },
+  { name: "Easin", phones: ["01710811111"], relationship: "Family" },
+  { name: "Sogir mama", phones: ["0175656565"], relationship: "Relatives" },
+  { name: "Disha", phones: ["0123456789"], relationship: "Friend" },
+  { name: "Dishani", phones: ["0188456789"], relationship: "Cousin" },
+  { name: "Shohan", phones: ["0188777777"], relationship: "Flat" },
+  { name: "Abil", phones: ["0191111177"], relationship: "Flat" },
+  { name: "Doakn", phones: ["0153221277"], relationship: "Shop" }
+];
+
       const uniqueCategories = [
         ...new Set(contacts.map((contact) => contact.relationship)),
       ];
@@ -297,15 +298,15 @@ function generateContactCards(containerId, category = "All") {
     title.className = "card-title";
     title.textContent = contact.name;
 
-         const phone = document.createElement("p");
-    phone.className = "card-text";
-    const phones = contact.phone.split(',').map(number => number.trim()); // Convert string to array
-    phones.forEach((phoneNumber, index) => {
-      const phoneNumberText = document.createElement("span");
-      phoneNumberText.textContent = `Phone ${index + 1}: ${phoneNumber}`;
-      phone.appendChild(phoneNumberText);
-      phone.appendChild(document.createElement("br")); // Add a line break
-    });
+         
+    const phone = document.createElement("p");
+phone.className = "card-text";
+contact.phones.forEach((phoneNumber, index) => {
+  const phoneNumberText = document.createElement("span");
+  phoneNumberText.textContent = `Phone ${index + 1}: ${phoneNumber}`;
+  phone.appendChild(phoneNumberText);
+  phone.appendChild(document.createElement("br")); // Add a line break
+});
 
 
     const relationship = document.createElement("p");
@@ -371,15 +372,15 @@ function generateContactCards2(containerId, category, matchingContacts) {
     title.className = "card-title";
     title.textContent = contact.name;
 
+   
    const phone = document.createElement("p");
-    phone.className = "card-text";
-    const phones = contact.phone.split(',').map(number => number.trim()); // Convert string to array
-    phones.forEach((phoneNumber, index) => {
-      const phoneNumberText = document.createElement("span");
-      phoneNumberText.textContent = `Phone ${index + 1}: ${phoneNumber}`;
-      phone.appendChild(phoneNumberText);
-      phone.appendChild(document.createElement("br")); // Add a line break
-    });
+phone.className = "card-text";
+contact.phones.forEach((phoneNumber, index) => {
+  const phoneNumberText = document.createElement("span");
+  phoneNumberText.textContent = `Phone ${index + 1}: ${phoneNumber}`;
+  phone.appendChild(phoneNumberText);
+  phone.appendChild(document.createElement("br")); // Add a line break
+});
 
 
     const relationship = document.createElement("p");
