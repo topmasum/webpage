@@ -240,7 +240,7 @@
   });
 
       const contacts = [
-        { name: "Masum", phone: "0142424242", relationship: "Friend" },
+        { name: "Masum", phone: "0142424242,0198837454", relationship: "Friend" },
         { name: "Masum 1", phone: "01641058008", relationship: "Friend" },
         { name: "Asfi", phone: "0164434576", relationship: "Relatives" },
         { name: "Ammu", phone: "01753872101", relationship: "Family" },
@@ -297,9 +297,16 @@ function generateContactCards(containerId, category = "All") {
     title.className = "card-title";
     title.textContent = contact.name;
 
-    const phone = document.createElement("p");
+         const phone = document.createElement("p");
     phone.className = "card-text";
-    phone.textContent = `Phone: ${contact.phone}`;
+    const phones = contact.phone.split(',').map(number => number.trim()); // Convert string to array
+    phones.forEach((phoneNumber, index) => {
+      const phoneNumberText = document.createElement("span");
+      phoneNumberText.textContent = `Phone ${index + 1}: ${phoneNumber}`;
+      phone.appendChild(phoneNumberText);
+      phone.appendChild(document.createElement("br")); // Add a line break
+    });
+
 
     const relationship = document.createElement("p");
     relationship.className = "card-text";
@@ -364,9 +371,16 @@ function generateContactCards2(containerId, category, matchingContacts) {
     title.className = "card-title";
     title.textContent = contact.name;
 
-    const phone = document.createElement("p");
+   const phone = document.createElement("p");
     phone.className = "card-text";
-    phone.textContent = `Phone: ${contact.phone}`;
+    const phones = contact.phone.split(',').map(number => number.trim()); // Convert string to array
+    phones.forEach((phoneNumber, index) => {
+      const phoneNumberText = document.createElement("span");
+      phoneNumberText.textContent = `Phone ${index + 1}: ${phoneNumber}`;
+      phone.appendChild(phoneNumberText);
+      phone.appendChild(document.createElement("br")); // Add a line break
+    });
+
 
     const relationship = document.createElement("p");
     relationship.className = "card-text";
