@@ -24,7 +24,7 @@
 <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
-
+ <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=SolaimanLipi&display=swap" />
 
 
     <style>
@@ -32,7 +32,7 @@
         border: 2px solid #c70039;
         border-radius: 10px;
         box-shadow: 0 4px 6px rgba(0, 0, 0, 0.5);
-        height: 150px; /* Set the height to 180px */
+         /* Set the height to 180px */
         width: 300px;
         margin: 10px;
         display: inline-block;
@@ -168,6 +168,10 @@
     background: linear-gradient(to bottom, #c70039, #900c3f, #581845);
     color: white;
   }
+  .card-title,
+      .card-text {
+        font-family: 'SolaimanLipi', sans-serif;
+      }
     </style>
   </head>
   <body>
@@ -220,290 +224,336 @@
         <h2 align="center">No matches found</h2>
       </div>
     </div>
-
     <script>
       // Function to search and filter contacts by name or number
       // Function to search and filter contacts by name or number
-	   document.addEventListener("DOMContentLoaded", function () {
-	    const header = document.getElementById("allContactsHeading");
-  let lastScrollTop = 0;
+      document.addEventListener("DOMContentLoaded", function () {
+        const header = document.getElementById("allContactsHeading");
+        let lastScrollTop = 0;
+        // Add this line at the beginning of your script
+let selectedCategoryCards = [];
 
-  window.addEventListener("scroll", function () {
-    const scrollTop = window.scrollY || document.documentElement.scrollTop;
+        window.addEventListener("scroll", function () {
+          const scrollTop =
+            window.scrollY || document.documentElement.scrollTop;
 
-    if (lastScrollTop > scrollTop) {
-      header.style.top = "0";
-    } else {
-      header.style.top = "-150px"; // Adjust the negative value to hide more or less of the image
-    }
-    lastScrollTop = scrollTop;
-  });
+          if (lastScrollTop > scrollTop) {
+            header.style.top = "0";
+          } else {
+            header.style.top = "-150px"; // Adjust the negative value to hide more or less of the image
+          }
+          lastScrollTop = scrollTop;
+        });
 
-      const contacts = [
-  { name: "Masum", phones: ["0142424242", "0198837454"], relationship: "Friend" },
-  { name: "Masum 1", phones: ["01641058008"], relationship: "Friend" },
-  { name: "Asfi", phones: ["0164434576"], relationship: "Relatives" },
-  { name: "Ammu", phones: ["01753872101"], relationship: "Family" },
-  { name: "Abbu", phones: ["01710876355"], relationship: "Family" },
-  { name: "Minhaj", phones: ["01576487021"], relationship: "Family" },
-  { name: "Oishy", phones: ["01710876355"], relationship: "Friend" },
-  { name: "Imran", phones: ["0172256431"], relationship: "Friend" },
-  { name: "Rafi", phones: ["01996534211"], relationship: "Friend" },
-  { name: "Asad", phones: ["01710875435"], relationship: "Relatives" },
-  { name: "Samiul", phones: ["01999876355"], relationship: "Relatives" },
-  { name: "Easin", phones: ["01710811111"], relationship: "Family" },
-  { name: "Sogir mama", phones: ["0175656565"], relationship: "Relatives" },
-  { name: "Disha", phones: ["0123456789"], relationship: "Friend" },
-  { name: "Dishani", phones: ["0188456789"], relationship: "Cousin" },
-  { name: "Shohan", phones: ["0188777777"], relationship: "Flat" },
-  { name: "Abil", phones: ["0191111177"], relationship: "Flat" },
-  { name: "Doakn", phones: ["0153221277"], relationship: "Shop" }
-];
+        const contacts = [
+          {
+            name: "Masum",
+            phone: ["0142424242", "0198837454", "0186956549"],
+            relationship: "Friend",
+            email: ["masum@example.com"],
+          },
+          {
+            name: "Masum 1",
+            phone: ["01641058008"],
+            relationship: "Friend",
+            email: ["masum1@example.com"],
+          },
+          {
+            name: "Asfi Ahmed",
+            phone: ["0164434576"],
+            relationship: "Relatives",
+            email: ["asfi@example.com"],
+          },
+          {
+            name: "Ammu",
+            phone: ["01753872101"],
+            relationship: "Family",
+            email: ["ammu@example.com"],
+          },
+          {
+            name: "Abbu",
+            phone: ["01710876355"],
+            relationship: "Family",
+            email: ["abbu@example.com"],
+          },
+          {
+            name: "Minhaj",
+            phone: ["01576487021"],
+            relationship: "Family",
+            email: ["minhaj@example.com"],
+          },
+          {
+            name: "Oishy",
+            phone: ["01710876355"],
+            relationship: "Friend",
+            email: ["oishy@example.com"],
+          },
+          {
+            name: "Imran",
+            phone: ["0172256431"],
+            relationship: "Friend",
+            email: ["imran@example.com"],
+          },
+          {
+            name: "Rafi",
+            phone: ["01996534211"],
+            relationship: "Friend",
+            email: ["rafi@example.com"],
+          },
+          {
+            name: "Asad",
+            phone: ["01710875435"],
+            relationship: "Relatives",
+            email: ["asad@example.com"],
+          },
+          {
+            name: "Samiul",
+            phone: ["01999876355"],
+            relationship: "Relatives",
+            email: ["samiul@example.com"],
+          },
+          {
+            name: "Easin",
+            phone: ["01710811111"],
+            relationship: "Family",
+            email: ["easin@example.com"],
+          },
+          {
+            name: "Sogir Mama",
+            phone: ["0175656565"],
+            relationship: "Relatives",
+            email: ["sogir@example.com"],
+			fax:["101010"]
+          },
+          {
+            name: "Disha",
+            phone: ["0123456789", "9876543210"],
+            relationship: "Friend",
+            email: ["disha@example.com"],
+            fax: ["6999875", "5666911"],
+          },
+          {
+            name: "Dishani",
+            phone: ["0188456789"],
+            relationship: "Cousin",
+            email: ["dishani@example.com"],
+          },
+          {
+            name: "Shohan",
+            phone: ["0188777777"],
+            relationship: "Flat",
+            email: ["shohan@example.com"],
+          },
+          {
+            name: "Abil",
+            phone: ["0191111177"],
+            relationship: "Flat",
+            email: ["abil@example.com"],
+          },
+          {
+            name: "Doakn",
+            phone: ["0153221277"],
+            relationship: "Shop",
+            email: ["doakn@example.com"],
+          },
+        ];
 
-      const uniqueCategories = [
-        ...new Set(contacts.map((contact) => contact.relationship)),
-      ];
+        const uniqueCategories = [
+          ...new Set(contacts.map((contact) => contact.relationship)),
+        ];
 
-      // get contactCardsContainer
-     
-        const contactCardsContainer = document.getElementById( "contactCardsContainer"
-      );
-      // Function to dynamically generate contact cards
-      uniqueCategories.forEach((category) => {
-    console.log("Generating cards for " + category);
-    const sectionId = `${category.toLowerCase()}Contacts`;
-    generateContactCards(sectionId, category);
-  });
+        // get contactCardsContainer
 
- // ...
-
-function generateContactCards(containerId, category = "All") {
-  const container = document.createElement("div");
-  container.id = containerId;
-  container.className = "row";
-  contactCardsContainer.appendChild(container);
-
-  const filteredContacts = category === "All"
-    ? contacts
-    : contacts.filter((contact) => contact.relationship === category);
-
-  filteredContacts.forEach((contact) => {
-    const card = document.createElement("div");
-    card.className = "card contact-card mb-3";
-
-    const cardBody = document.createElement("div");
-    cardBody.className = "card-body";
-
-    const title = document.createElement("h5");
-    title.className = "card-title";
-    title.textContent = contact.name;
-
-         
-    const phone = document.createElement("p");
-phone.className = "card-text";
-contact.phones.forEach((phoneNumber, index) => {
-  const phoneNumberText = document.createElement("span");
-  phoneNumberText.textContent = `Phone ${index + 1}: ${phoneNumber}`;
-  phone.appendChild(phoneNumberText);
-  phone.appendChild(document.createElement("br")); // Add a line break
-});
-
-
-    const relationship = document.createElement("p");
-    relationship.className = "card-text";
-    relationship.textContent = `Relationship: ${contact.relationship}`;
-
-    const callButton = document.createElement("button");
-    callButton.className = "call-button btn btn-primary";
-    callButton.innerHTML = '<i class="fa fa-address-book"></i>';
-
-    cardBody.appendChild(title);
-    cardBody.appendChild(phone);
-    cardBody.appendChild(relationship);
-    card.appendChild(cardBody);
-    card.appendChild(callButton);
-
-    container.appendChild(card);
-  });
-
-  const heading = document.createElement("h2");
-  heading.textContent = category === "All" ? "All Contacts" : category;
-  container.insertBefore(heading, container.firstChild);
-}
-
-// ...
-document.getElementById("filterAll").addEventListener("click", () => filterContacts("All"));
-function filterContacts(category) {
-  // Update the dropdown button text
-  document.getElementById("filterDropdownButton").innerText = category;
-
-  // Clear previous cards
-  contactCardsContainer.innerHTML = "";
-
-  // Generate cards for the selected category
-  generateContactCards(`${category.toLowerCase()}Contacts`, category);
-
-  // Close the dropdown menu after selecting a category
-  document.getElementById("filterDropdownButton").click();
-}
-
-
-
-
-  function updateContactCards(category) {
-    generateContactCards(`${category.toLowerCase()}Contacts`, category);
-  }
-  
- // Function to dynamically generate contact cards
-function generateContactCards2(containerId, category, matchingContacts) {
-  const container = document.createElement("div");
-  container.id = containerId;
-  container.className = "row";
-  contactCardsContainer.appendChild(container);
-
-  matchingContacts.forEach((contact) => {
-    const card = document.createElement("div");
-    card.className = "card contact-card mb-3";
-
-    const cardBody = document.createElement("div");
-    cardBody.className = "card-body";
-
-    const title = document.createElement("h5");
-    title.className = "card-title";
-    title.textContent = contact.name;
-
-   
-   const phone = document.createElement("p");
-phone.className = "card-text";
-contact.phones.forEach((phoneNumber, index) => {
-  const phoneNumberText = document.createElement("span");
-  phoneNumberText.textContent = `Phone ${index + 1}: ${phoneNumber}`;
-  phone.appendChild(phoneNumberText);
-  phone.appendChild(document.createElement("br")); // Add a line break
-});
-
-
-    const relationship = document.createElement("p");
-    relationship.className = "card-text";
-    relationship.textContent = `Relationship: ${contact.relationship}`;
-
-    const callButton = document.createElement("button");
-    callButton.className = "call-button btn btn-primary";
-    callButton.innerHTML = '<i class="fa fa-address-book"></i>';
-
-    cardBody.appendChild(title);
-    cardBody.appendChild(phone);
-    cardBody.appendChild(relationship);
-    card.appendChild(cardBody);
-    card.appendChild(callButton);
-
-    container.appendChild(card);
-  });
-
-  const heading = document.createElement("h2");
-  heading.textContent = category === "All" ? "All Contacts" : category;
-  container.insertBefore(heading, container.firstChild);
-}
-
-document.getElementById("searchInput").addEventListener("input", function () {
-  const searchTerm = this.value.toLowerCase();
-
-  // Clear previous search results
-  contactCardsContainer.innerHTML = "";
-
-  // Filter contacts based on search term
-  const filteredContacts = contacts.filter(
-    (contact) =>
-      contact.name.toLowerCase().includes(searchTerm) ||
-      contact.phone.includes(searchTerm)
-  );
-
-  // Display matching cards and categories
-  if (searchTerm !== "") {
-    uniqueCategories.forEach((category) => {
-      const matchingContacts = filteredContacts.filter(
-        (contact) => contact.relationship === category
-      );
-
-      if (matchingContacts.length > 0) {
-        generateContactCards2(
-          `${category.toLowerCase()}Contacts`,
-          category,
-          matchingContacts
+         const contactCardsContainer = document.getElementById(
+          "contactCardsContainer"
         );
-      }
-    });
-  } else {
-    // If search bar is empty, display all contacts and categories
-    uniqueCategories.forEach((category) => {
-      generateContactCards2(
+        // Function to dynamically generate contact cards
+        function allContacts() {
+          uniqueCategories.forEach((category) => {
+            generateContactCards(
+              `${category.toLowerCase()}Contacts`,
+              category,
+              contacts.filter((contact) => contact.relationship === category)
+            );
+          });
+        }
+        allContacts();
+
+        // ...
+
+        function generateContactCards(containerId, category,newContacts=contacts) {
+          const container = document.createElement("div");
+          container.id = containerId;
+          container.className = "row";
+          contactCardsContainer.appendChild(container);
+
+          const filteredContacts = newContacts.filter(
+            (contact) => contact.relationship === category
+          );
+
+          filteredContacts.forEach((contact) => {
+            const card = document.createElement("div");
+            card.className = "card contact-card mb-3";
+
+            const cardBody = document.createElement("div");
+            cardBody.className = "card-body";
+
+            const title = document.createElement("h5");
+            // align it center
+            title.style.textAlign = "center";
+            title.className = "card-title";
+            title.textContent = contact.name;
+            cardBody.appendChild(title);
+
+            Object.keys(contact).forEach((property) => {
+              // Skip the name and relationship properties
+              if (property === "name" || property === "relationship") {
+                return;
+              }
+              const propertyName =
+                property.charAt(0).toUpperCase() + property.slice(1);
+              const propertyElement = document.createElement("p");
+              propertyElement.className = "card-text";
+              // print the property array in new line if it is an array and use property name as bold and use classes to style the text and align them
+              if (Array.isArray(contact[property])) {
+                propertyElement.innerHTML = `<b>${propertyName}</b>: <br/>${contact[
+                  property
+                ].join("<br/>")}`;
+              } else {
+                propertyElement.innerHTML = `<b>${propertyName}</b>: ${contact[property]}`;
+              }
+              cardBody.appendChild(propertyElement);
+            });
+
+            const callButton = document.createElement("button");
+            callButton.className = "call-button btn btn-primary";
+            callButton.innerHTML = '<i class="fa fa-address-book"></i>';
+
+            card.appendChild(cardBody);
+            card.appendChild(callButton);
+
+            container.appendChild(card);
+          });
+
+          const heading = document.createElement("h2");
+          heading.textContent = category === "All" ? "All Contacts" : category;
+          container.insertBefore(heading, container.firstChild);
+        }
+
+        // ...
+        document
+          .getElementById("filterAll")
+          .addEventListener("click", () => filterContacts("All"));
+
+        function updateContactCards(category) {
+          generateContactCards(`${category.toLowerCase()}Contacts`, category);
+        }
+
+       
+      document
+          .getElementById("searchInput")
+          .addEventListener("input", function () {
+            const searchTerm = this.value.toLowerCase();
+            // Clear previous search results
+            contactCardsContainer.innerHTML = "";
+
+            // Filter contacts based on search term, search whole contact object
+            let filteredContacts = contacts.filter((contact) => {
+              return Object.keys(contact).some((property) => {
+                if (Array.isArray(contact[property])) {
+                  return contact[property]
+                    .join(" ")
+                    .toLowerCase()
+                    .includes(searchTerm);
+                }
+                return contact[property]
+                  .toString()
+                  .toLowerCase()
+                  .includes(searchTerm);
+              });
+            });
+
+            //get selected category if selected
+            const selectedCategory = document.getElementById(
+              "filterDropdownButton"
+            ).innerText;
+            // if selected category is present in uniqueCategories then filter contacts based on selected category and update array
+            if (uniqueCategories.includes(selectedCategory)) {
+              filteredContacts = filteredContacts.filter(
+                (contact) => contact.relationship === selectedCategory
+              );
+            }
+
+            // Display matching cards and categories
+if (searchTerm !== "") {
+  uniqueCategories.forEach((category) => {
+    const matchingContacts = filteredContacts.filter(
+      (contact) => contact.relationship === category
+    );
+
+    if (matchingContacts.length > 0) {
+      generateContactCards(
         `${category.toLowerCase()}Contacts`,
         category,
-        contacts.filter((contact) => contact.relationship === category)
+        matchingContacts
       );
-    });
-  }
-
-  // Display "No matches found" message if there are no matching contacts
-  const noMatchesMessage = document.getElementById("noMatchesMessage");
-  noMatchesMessage.style.display =
-    filteredContacts.length === 0 && searchTerm !== "" ? "block" : "none";
-});
-
-
-  // ... Your existing code ...
-
-  // Function to dynamically generate filter buttons
-  function generateFilterButtons() {
-    const filterDropdownMenu = document.querySelector(".dropdown-menu");
-
-    uniqueCategories.forEach((category) => {
-      const filterButton = document.createElement("a");
-      filterButton.className = "dropdown-item filter-button";
-      filterButton.href = "#";
-      filterButton.textContent = category;
-      filterButton.addEventListener("click", () => filterContacts(category));
-      filterDropdownMenu.appendChild(filterButton);
-    });
-  }
-
-  generateFilterButtons();
-
-  function filterContacts(category) {
-    // Update the dropdown button text
-    document.getElementById("filterDropdownButton").innerText = category;
-
-    // Clear previous cards
-    contactCardsContainer.innerHTML = "";
-
-    if (category === "All") {
-      // If "All" is selected, display all contacts and categories
-      uniqueCategories.forEach((category) => {
-        generateContactCards(`${category.toLowerCase()}Contacts`, category);
-      });
-    } else {
-      // Generate cards for the selected category
-      generateContactCards(`${category.toLowerCase()}Contacts`, category);
     }
-
-    // Close the dropdown menu after selecting a category
-    document.getElementById("filterDropdownButton").click();
-  }
- 
-  // ... (your existing code for other functionalities)
-});
-  </script>
-</body>
-
-</html>
+  });
+} else {
+  const selectedCategory = document.getElementById("filterDropdownButton")
+    .innerText;
+  filterContacts(selectedCategory);
+}
 
 
+            // Display "No matches found" message if there are no matching contacts
+            const noMatchesMessage =
+              document.getElementById("noMatchesMessage");
+            noMatchesMessage.style.display =
+              filteredContacts.length === 0 && searchTerm !== ""
+                ? "block"
+                : "none";
+				 const dropdownButton = document.getElementById("filterDropdownButton");
+    const dropdown = new bootstrap.Dropdown(dropdownButton);
+    dropdown.hide();
+          });
+        // ... Your existing code ...
 
+        // Function to dynamically generate filter buttons
+        function generateFilterButtons() {
+          const filterDropdownMenu = document.querySelector(".dropdown-menu");
 
+          uniqueCategories.forEach((category) => {
+            const filterButton = document.createElement("a");
+            filterButton.className = "dropdown-item filter-button";
+            filterButton.href = "#";
+            filterButton.textContent = category;
+            filterButton.addEventListener("click", () =>
+              filterContacts(category)
+            );
+            filterDropdownMenu.appendChild(filterButton);
+          });
+        }
 
+        generateFilterButtons();
 
+        function filterContacts(category) {
+          // Update the dropdown button text
+          document.getElementById("filterDropdownButton").innerText = category;
+          // Clear previous cards
+          contactCardsContainer.innerHTML = "";
+          if (category === "All") {
+            allContacts();
+          } else {
+            // Generate cards for the selected category
+            generateContactCards(`${category.toLowerCase()}Contacts`, category);
+          }
+          // Close the dropdown menu after selecting a category
+          document.getElementById("filterDropdownButton").click();
+        }
 
-
+        // ... (your existing code for other functionalities)
+      });
     </script>
   </body>
 </html>
