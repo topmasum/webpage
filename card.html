@@ -12,36 +12,40 @@
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
     />
-	<!-- Bootstrap CSS -->
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" />
+    <!-- Bootstrap CSS -->
+    <link
+      rel="stylesheet"
+      href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+    />
 
-<!-- Font Awesome CSS -->
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />
-
-<!-- Bootstrap JS and Popper.js -->
-<!-- Bootstrap JS and Popper.js -->
-<!-- Bootstrap JS and Popper.js -->
-<script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
- <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=SolaimanLipi&display=swap" />
- <link
+    <!-- Font Awesome CSS -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
+    />
+    <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+    <!-- add sutonnimj font -->
+    <link
       rel="stylesheet"
       href="https://fonts.maateen.me/sutonnyomj/font.css"
       type="text/css"
       charset="utf-8"
     />
-	 <style>
-	  body {
+
+    <style>
+      body {
         font-family: "SutonnyMJ";
       }
       .contact-card {
         border: 2px solid #c70039;
         border-radius: 10px;
         box-shadow: 0 4px 6px rgba(0, 0, 0, 0.5);
-         /* Set the height to 180px */
+        /* height: 150px; Set the height to 180px */
         width: 300px;
         margin: 10px;
+        padding-bottom: 10px;
         display: inline-block;
       }
       .contact-card:hover {
@@ -111,13 +115,12 @@
         border-radius: 20px;
         /* Override the border-radius for the form-control class */
       }
-     
 
       .btn-primary {
         background: linear-gradient(to bottom, #c70039, #900c3f, #581845);
         border: 1px solid #c70039;
       }
-      
+
       .btn:focus {
         box-shadow: 0 0 0 0.2rem rgba(137, 23, 75, 0.5);
       }
@@ -127,11 +130,20 @@
         /* make it full width */
         width: 100%;
       }
+      h3 {
+        color: #585858;
+        font-weight: bold;
+        /* text size */
+        font-size: 1.5rem;
+        margin-left: 15px;
+        /* make it full width */
+        width: 100%;
+      }
       .row {
         /* add marging below */
         margin-bottom: 50px;
         /* give some padding */
-        padding-left: 80px;
+        /* padding-left: 80px; */
       }
       .header-icon {
         margin-top: 10px;
@@ -139,14 +151,14 @@
         margin-right: 10px;
         margin-left: 30px;
         padding: 10px;
-
+        background-color: rgb(240, 240, 240);
         border-radius: 20%;
         max-height: 120px;
         max-width: 120px;
         /* add telephone shake animation */
-
-        animation: slideIn 1s ease-out forwards;
+         animation: slideIn 1s ease-out forwards;
       }
+
       @keyframes slideIn {
         0% {
           transform: translateX(-120px);
@@ -169,21 +181,19 @@
       .contact-card {
         animation: fadeIn 1s ease-out; /* Adjust the animation duration and timing function as needed */
       }
-	   
 
-  .dropdown-item:hover {
-    background: linear-gradient(to bottom, #c70039, #900c3f, #581845);
-    color: white;
-  }
-  .card-title,
-      .card-text {
-        font-family: 'SolaimanLipi', sans-serif;
+      .dropdown-item:hover {
+        background: linear-gradient(to bottom, #c70039, #900c3f, #581845);
+        color: white;
       }
     </style>
   </head>
   <body>
     <div id="allContactsHeading" style="top: 0px">
-      <img src="Contactlist3.png" class="header-icon" />
+      <img
+        src="PicsArt_11-01-11.35.44.png"
+        class="header-icon"
+      />
       <div id="searchbar" class="input-group mb-3">
         <input
           type="text"
@@ -200,26 +210,36 @@
     </div>
     <br />
     <div class="container">
-        <div class="row">
+      <div class="row">
         <div class="col text-right">
-		 <div class="dropdown" style="position: absolute; top: 10px; right: 10px;">
-       <button
-  class="btn btn-secondary dropdown-toggle"
-  type="button"
-  id="filterDropdownButton"
-  data-toggle="dropdown"
-  style="background: linear-gradient(to bottom, #c70039, #900c3f, #581845); border: 1px solid #c70039;"
->
-  ফিল্টার বাটন
-</button>
+          <div
+            class="dropdown"
+            style="position: absolute; top: 10px; right: 10px"
+          >
+            <button
+              class="btn btn-secondary dropdown-toggle"
+              type="button"
+              id="filterDropdownButton"
+              data-toggle="dropdown"
+              style="
+                background: linear-gradient(
+                  to bottom,
+                  #c70039,
+                  #900c3f,
+                  #581845
+                );
+                border: 1px solid #c70039;
+              "
+            >
+              ফিল্টার বাটন
+            </button>
 
-
-        <div class="dropdown-menu" aria-labelledby="filterDropdownButton">
-          <a class="dropdown-item" href="#" id="filterAll">All</a>
-          <!-- Dynamically generate filter buttons for each category -->
-          <!-- You can use JavaScript to populate this part -->
-        </div>
-      </div>
+            <div class="dropdown-menu" aria-labelledby="filterDropdownButton">
+              <a class="dropdown-item" href="#" id="filterAll">All</a>
+              <!-- Dynamically generate filter buttons for each category -->
+              <!-- You can use JavaScript to populate this part -->
+            </div>
+          </div>
         </div>
       </div>
 
@@ -232,8 +252,6 @@
       </div>
     </div>
     <script>
-    
-
       // Function to search and filter contacts by name or number
       document.addEventListener("DOMContentLoaded", function () {
         const header = document.getElementById("allContactsHeading");
@@ -254,8 +272,9 @@
         const contacts = [
           {
                                       নাম: "অধ্যাপক ড. মো. ইমদাদুল ",
-			ধারা:"১৭ (১) (ক)",					  
-			পদ: "ভাইস-চ্যান্সেলর (সভাপতি)",
+			ধারা:"১৭ (১) (ক)",	
+                                 সদস্যপদ: "সভাপতি",			
+			পদ: "ভাইস-চ্যান্সেলর ",
                                     ফোন: ["৮৯৩৫৩০৮৩","৮৯২৩০৯৫","২২৩৩৫৪৩১৭ "],
             category: "সিন্ডিকেট ",
                                       ফাক্স  :["৪৭১১৮৪৪৯ "]
@@ -263,7 +282,8 @@
 		   {
                                       নাম: "অধ্যাপক ড. কামালউদ্দীন আহমদ ",
 	                        ধারা:"১৭ (১) (খ)",
-			পদ: "ট্রেজারার (সদস্যবৃন্দ) ",
+			 সদস্যপদ: "সদস্যবৃন্দ",			
+			পদ: "ট্রেজারার  ",
                                     ফোন: ["২২৩৩৫৫৬৩৩ ","০১৭২০০৪৩৩৩৩ "],
             category: "সিন্ডিকেট ",
                                       
@@ -271,7 +291,8 @@
 		  {
                                       নাম: "জনাব মোহাম্মদ আবু ইউসুফ মিয়া",
 		              ধারা:"১৭ (১)  (গ) ",
-			পদ: "অতিরিক্ত সচিব (সদস্যবৃন্দ) ",
+					   সদস্যপদ: "সচিব",
+			পদ: "অতিরিক্ত সচিব",
 			
                                     ফোন: ["২২৩৩৮৮০৩৪  ","০১৫৫২৩০৭২৫৫  "],
             category: "সিন্ডিকেট ",
@@ -280,15 +301,25 @@
 		  {
                                       নাম: "জনাব মোঃ মাহমুদুল আলম ",
 			   ধারা:"১৭ (১)  (গ) ",
-			পদ: "যুগ্ম সচিব(সদস্যবৃন্দ) ",
+			    সদস্যপদ: "সচিব",
+			পদ: "যুগ্ম সচিব ",
                                     ফোন: ["২২৩৩৫২১৮৫   ","০১৭২০১২৭৭৬২   "],
             category: "সিন্ডিকেট ",
                                       
           },
+		   {
+                                      নাম: "প্রকৌশলী মোঃ ওহিদুজ্জামান   ",
+			  ধারা:"১৭ (১) ( জ)",
+			   সদস্যপদ: " ",
+			পদ: "রেজিস্ট্রার,সচিব, জগন্নাথ বিশ্ববিদ্যালয়, ঢাকা ",
+                                    ফোন: ["৯৫৩৪২৫৫ ","০১৭১৩০১৮৫১১ "],
+            category: "সিন্ডিকেট ",                           
+          },
 		  {
                                       নাম: "অধ্যাপক ড. মোহাম্মদ ফরাসউদ্দিন  ",
 			  ধারা:"১৭ (১)  (ঘ) ",
-			পদ: "চেয়ারপার্সন, বোর্ড অব ট্রাস্টিজ(সদস্যবৃন্দ) ",
+			   সদস্যপদ: "সদস্যবৃন্দ",
+			পদ: "চেয়ারপার্সন, বোর্ড অব ট্রাস্টিজ ",
                                     ফোন: ["৯৬৬৬৭৭৫৫৭৭ ","০১৭৭৭৭৫৭১৮৮   ","৯৮৫০৯০৯ "],
             category: "সিন্ডিকেট ",
                                       
@@ -296,7 +327,8 @@
 		  {
                                       নাম: "অধ্যাপক ড. হারুন-অর-রশিদ  ",
 			  ধারা:"১৭ (১) ( ঘ)",
-			পদ: "রাষ্ট্রবিজ্ঞান বিভাগ,ঢাকা বিশ্ববিদ্যালয়(সদস্যবৃন্দ) ",
+			   সদস্যপদ: "সদস্যবৃন্দ",
+			পদ: "রাষ্ট্রবিজ্ঞান বিভাগ,ঢাকা বিশ্ববিদ্যালয়",
                                     ফোন: ["০১৭৫৫৬৪২১০০  "],
             category: "সিন্ডিকেট ",
                                       
@@ -304,7 +336,8 @@
 		  {
                                       নাম: "অধ্যাপক ড. মোঃ কামাল উদ্দীন   ",
 									  ধারা:"১৭ (১) ( ঙ)",
-			পদ: "ইন্টারন্যাশনাল বিজনেস বিভাগ,ঢাকা বিশ্ববিদ্যালয়((সদস্যবৃন্দ) ",
+									   সদস্যপদ: "সদস্যবৃন্দ",
+			পদ: "ইন্টারন্যাশনাল বিজনেস বিভাগ,ঢাকা বিশ্ববিদ্যালয় ",
                                     ফোন: ["৯৬৬১৯০০   ","০১৭১৩৪৫৩০৪০ "],
             category: "সিন্ডিকেট ",
                                       
@@ -312,56 +345,57 @@
 		  {
                                       নাম: "অধ্যাপক ড. মোঃ হাবিবুর রহমান  ",
 									   ধারা:"১৭ (১) ( চ)",
-			পদ: "পুরকৌশল বিভাগ, বাংলাদেশ প্রকৌশল বিশ্ববিদ্যালয়(সদস্যবৃন্দ) ",
+									    সদস্যপদ: "সদস্যবৃন্দ",
+			পদ: "পুরকৌশল বিভাগ, বাংলাদেশ প্রকৌশল বিশ্ববিদ্যালয় ",
                                     ফোন: ["৪৯২৭৪০৩৪-৫৩ ","০১৭১২১০৮০০৭  "],
             category: "সিন্ডিকেট ",                           
           },
 		  {
                                       নাম: "অধ্যাপক ড. মোঃ রইছ উদ্দীন   ",
 									    ধারা:"১৭ (১) ( ছ)",
-			পদ: "ডিন, কলা অনুষদ, জগন্নাথ বিশ্ববিদ্যালয়, ঢাকা(সদস্যবৃন্দ) ",
+										 সদস্যপদ: "সদস্যবৃন্দ",
+			পদ: "ডিন, কলা অনুষদ, জগন্নাথ বিশ্ববিদ্যালয়, ঢাকা ",
                                     ফোন: ["২২৩৩৫৩৬৭৫ ","০১৭২৬৬৫৭৩৭২ "],
             category: "সিন্ডিকেট ",                           
           },
 		  {
                                       নাম: "অধ্যাপক ড. মোঃ গোলাম মোস্তফা   ",
 									    ধারা:"১৭ (১) ( ছ)",
-			পদ: "ডিন, বিজনেস স্টাডিজ অনুষ, জগন্নাথ বিশ্ববিদ্যালয়, ঢাকা(সদস্যবৃন্দ) ",
+										 সদস্যপদ: "সদস্যবৃন্দ",
+			পদ: "ডিন, বিজনেস স্টাডিজ অনুষ, জগন্নাথ বিশ্ববিদ্যালয়, ঢাকা ",
                                     ফোন: ["২২৩৩৫৩৭৮৮ ","০১৫৫৬৩১৪৩৮০  "],
             category: "সিন্ডিকেট ",                           
           },
 		  {
                                       নাম: "অধ্যাপক ড. মোঃ শাহজাহান    ",
 									    ধারা:"১৭ (১) ( ছ)",
-			পদ: "ডিন, বিজ্ঞান অনুষদ , জগন্নাথ বিশ্ববিদ্যালয়, ঢাকা(সদস্যবৃন্দ) ",
+										 সদস্যপদ: "সদস্যবৃন্দ",
+			পদ: "ডিন, বিজ্ঞান অনুষদ , জগন্নাথ বিশ্ববিদ্যালয়, ঢাকা ",
                                     ফোন: ["২২৩৩৫৩৮৭৮  ","০১৮১৩৫০০৫১৩   ","৮৮৩১৫৭২ "],
             category: "সিন্ডিকেট ",                           
           },
 		  		  {
                                       নাম: "অধ্যাপক ড. হোসনে আরা বেগম   ",
 									    ধারা:"১৭ (১) ( জ)",
-			পদ: "বাংলা  বিভাগ , জগন্নাথ বিশ্ববিদ্যালয়, ঢাকা(সদস্যবৃন্দ) ",
+										 সদস্যপদ: "সদস্যবৃন্দ",
+			পদ: "বাংলা  বিভাগ , জগন্নাথ বিশ্ববিদ্যালয়, ঢাকা ",
                                     ফোন: ["০১৭১৫০৪০৬৯৬  "],
             category: "সিন্ডিকেট ",                           
           },
 		  	  {
                                       নাম: "অধ্যাপক ড. মোঃ নূরে আলম আব্দুল্লাহ    ",
 									  ধারা:"১৭ (১) ( জ)",
-			পদ: "পদার্থবিজ্ঞান বিভাগ , জগন্নাথ বিশ্ববিদ্যালয়, ঢাকা(সদস্যবৃন্দ) ",
+									   সদস্যপদ: "সদস্যবৃন্দ",
+			পদ: "পদার্থবিজ্ঞান বিভাগ , জগন্নাথ বিশ্ববিদ্যালয়, ঢাকা",
                                     ফোন: ["০১৩০০৯৭৮১৬৬৬  "],
             category: "সিন্ডিকেট ",                           
           },
-		  {
-                                      নাম: "প্রকৌশলী মোঃ ওহিদুজ্জামান   ",
-			  ধারা:"১৭ (১) ( জ)",
-			পদ: "রেজিস্ট্রার(সচিব ), জগন্নাথ বিশ্ববিদ্যালয়, ঢাকা(সদস্যবৃন্দ) ",
-                                    ফোন: ["৯৫৩৪২৫৫ ","০১৭১৩০১৮৫১১ "],
-            category: "সিন্ডিকেট ",                           
-          },
+		 
 		  {
                                       নাম: "অধ্যাপক ড. মো. ইমদাদুল ",
-			ধারা:"১১ (১) ",					  
-			পদ: "ভাইস-চ্যান্সেলর (সভাপতি)",
+			ধারা:"১১ (১) ",	
+                                  সদস্যপদ: "সভাপতি",			
+			পদ: "ভাইস-চ্যান্সেলর",
                                     ফোন: ["৮৯৩৫৩০৮৩","৮৯২৩০৯৫","২২৩৩৫৪৩১৭ "],
 			ইন্টারকম: "১০১", 						
             category: "অর্থ কমিটি  ",
@@ -369,59 +403,62 @@
           },
 		  {
                                       নাম: "অধ্যাপক ড. কামালউদ্দীন আহমদ  ",
-			ধারা:"২৮ (১) (ক)  ",					  
-			পদ: "ট্রেজারার (সদস্যবৃন্দ) ",
+			ধারা:"২৮ (১) (ক)  ",
+                                    সদস্যপদ: "সদস্যবৃন্দ",			
+			পদ: "ট্রেজারার ",
                                     ফোন: ["২২৩৩৫৫৬৩৩ ","০১৭২০০৪৩৩৩৩ "],
 			ইন্টারকম: "১০১", 						
             category: "অর্থ কমিটি  ",                                     
           },
 		  {
                                       নাম: "প্রকৌশলী মোঃ ওহিদুজ্জামান   ",
-			ধারা:"২৮ (১) (খ) ",					  
-			পদ: "রেজিস্ট্রার,জগন্নাথ বিশ্ববিদ্যালয়, ঢাকা (সদস্যবৃন্দ) ",
+			ধারা:"২৮ (১) (খ) ",		
+                               সদস্যপদ: "সদস্যবৃন্দ",			
+			পদ: "রেজিস্ট্রার,জগন্নাথ বিশ্ববিদ্যালয়, ঢাকা ",
                                     ফোন: ["৯৫৩৪২৫৫  ","০১৭১৩০১৮৫১১  "],
 			ইন্টারকম: "১১৩", 						
             category: "অর্থ কমিটি  ",                                     
           },
 		  {
                                       নাম: "অধ্যাপক ড. মোঃ রইছ উদ্দীন    ",
-			ধারা:"২৮ (১) (গ) ",					  
-			পদ: "ডিন, কলা অনুষদ, জগন্নাথ বিশ্ববিদ্যালয়, ঢাকা(সদস্যবৃন্দ) ",
+			ধারা:"২৮ (১) (গ) ",	
+                                     সদস্যপদ: "সদস্যবৃন্দ",			
+			পদ: "ডিন, কলা অনুষদ, জগন্নাথ বিশ্ববিদ্যালয়, ঢাকা ",
                                     ফোন: ["২২৩৩৫৩৬৭৫   ","০১৭২৬৬৫৭৩৭২   "],
 			ইন্টারকম: "১০৯ ", 						
             category: "অর্থ কমিটি  ",                                     
           },
 		  {
                                       নাম: "অধ্যাপক ড. মোঃ কামাল উদ্দীন  ",
-			ধারা:"২৮ (১) (ঘ) ",					  
-			পদ: "ইন্টারন্যাশনাল বিজনেস বিভাগ, ঢাকা বিশ্ববিদ্যালয়, ঢাকা(সদস্যবৃন্দ) ",
+			ধারা:"২৮ (১) (ঘ) ",	
+                                    সদস্যপদ: "সদস্যবৃন্দ",			
+			পদ: "ইন্টারন্যাশনাল বিজনেস বিভাগ, ঢাকা বিশ্ববিদ্যালয়, ঢাকা",
                                     ফোন: ["৯৬৬১৯০০   ","০১৭১৩৪৫৩০৪০  "],						
             category: "অর্থ কমিটি  ",                                     
           },
-		  {
-                                      নাম: "শূন্য",
-			ধারা:"২৮ (১) (ঙ) ",					  									
-            category: "অর্থ কমিটি  ",                                     
-          },
+		  
 		  {
                                       নাম: "জনাব মোঃ শাহ্‌ আলম   ",
-			ধারা:"২৮ (১) (চ) ",					  
-			পদ: "পরিচালক (অতিরিক্ত দায়িতৃ) ,অর্থ ও হিসাব বিভাগ , বাংলাদেশ বিশ্ববিদ্যালয় মঞ্জুরি কমিশন ,ঢাকা(সদস্যবৃন্দ) ",
+			ধারা:"২৮ (১) (চ) ",		
+                               সদস্যপদ: "সদস্যবৃন্দ",			
+			পদ: "পরিচালক (অতিরিক্ত দায়িতৃ) ,অর্থ ও হিসাব বিভাগ , বাংলাদেশ বিশ্ববিদ্যালয় মঞ্জুরি কমিশন ,ঢাকা ",
                                     ফোন: ["৫৮১৬০২৬০  ","০১৫৫২৪১৫৮৬১  "],							
             category: "অর্থ কমিটি  ",                                     
           },
 		  {
                                       নাম: "প্রকৌশলী মোঃ হেলাল উদ্দিন পাটোয়ারী, পিইঞ্জ  ",
-			ধারা:"২৮ (১) (ছ) ",					  
-			পদ: "প্রধান প্রকৌশলী, প্রকৌশল দপ্তর , জগন্নাথ বিশ্ববিদ্যালয়, ঢাকা(সদস্যবৃন্দ) ",
+			ধারা:"২৮ (১) (ছ) ",	
+                                       সদস্যপদ: "সদস্যবৃন্দ",			
+			পদ: "প্রধান প্রকৌশলী, প্রকৌশল দপ্তর , জগন্নাথ বিশ্ববিদ্যালয়, ঢাকা ",
 			ইন্টারকম: "১৩৭  ",
                                     ফোন: ["৯৫১৫৬৯৯   ","০১৭১১৫৩৫৩৯৭   "],						
             category: "অর্থ কমিটি  ",                                     
           },
 		  {
                                       নাম: "অধ্যাপক ড. কাজী মোঃ নাসির উদ্দীন   ",
-			ধারা:"২৮ (১) (জ)  ",					  
-			পদ: "পরিচালক (অর্থ ও হিসাব), সদস্য-সচিব  , জগন্নাথ বিশ্ববিদ্যালয়, ঢাকা(সদস্যবৃন্দ) ",
+			ধারা:"২৮ (১) (জ)  ",	
+                                      সদস্যপদ: " সদস্য-সচিব",			
+			পদ: "পরিচালক (অর্থ ও হিসাব) , জগন্নাথ বিশ্ববিদ্যালয়, ঢাকা ",
 			ইন্টারকম: "১২৬ ",
                                     ফোন: ["২২৩৩৫০০৬৯    ","০১৭১২৬৭৮২৮৪"],						
             category: "অর্থ কমিটি  ",                                     
@@ -476,7 +513,19 @@
             (contact) => contact.category === category
           );
 
+          const subcategoryMap = new Map();
+
           filteredContacts.forEach((contact) => {
+            const subcategory = contact.সদস্যপদ;
+            if (!subcategoryMap.has(subcategory)) {
+              const subcontainer = document.createElement("div");
+              subcontainer.className = "row";
+              subcategoryMap.set(subcategory, subcontainer);
+              container.appendChild(subcontainer);
+            }
+
+            const subcontainer = subcategoryMap.get(subcategory);
+
             const card = document.createElement("div");
             card.className = "card contact-card mb-3";
 
@@ -487,14 +536,21 @@
             // align it center
             title.style.textAlign = "center";
             title.className = "card-title";
-            title.textContent = contact.name;
+            title.textContent = contact.নাম;
             cardBody.appendChild(title);
+            // add পদ as subtitle if exists and সদস্যপদ as tag if exists
+            if (contact.পদ) {
+              const subtitle = document.createElement("h6");
+              subtitle.className = "card-subtitle mb-2 text-muted";
+              subtitle.textContent = contact.পদ;
+              subtitle.style.textAlign = "center";
+              cardBody.appendChild(subtitle);
+            }
 
             Object.keys(contact).forEach((property) => {
-              // Skip the name and category properties
-              if (property === "name" || property === "category") {
+              // Skip the name , category , সদস্যপদ and পদ properties
+              if (["নাম", "category", "সদস্যপদ", "পদ"].includes(property))
                 return;
-              }
               const propertyName =
                 property.charAt(0).toUpperCase() + property.slice(1);
               const propertyElement = document.createElement("p");
@@ -528,7 +584,7 @@
             card.appendChild(cardBody);
             card.appendChild(callButton);
 
-            container.appendChild(card);
+            subcontainer.appendChild(card);
           });
 
           if (filteredContacts.length > 0) {
@@ -536,6 +592,13 @@
             heading.textContent =
               category === "All" ? "All Contacts" : category;
             container.insertBefore(heading, container.firstChild);
+
+            // for all subcontainers add subcategory heading
+            subcategoryMap.forEach((subcontainer, subcategory) => {
+              const subheading = document.createElement("h3");
+              subheading.textContent = subcategory;
+              subcontainer.insertBefore(subheading, subcontainer.firstChild);
+            });
           } else container.remove();
         }
 
@@ -671,7 +734,6 @@
           document.getElementById("filterDropdownButton").click();
         }
       });
-    
     </script>
   </body>
 </html>
