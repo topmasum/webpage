@@ -1,0 +1,871 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Contact List(c)</title>
+    <link
+      rel="stylesheet"
+      href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
+    />
+    <!-- Bootstrap CSS -->
+    <link
+      rel="stylesheet"
+      href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+    />
+
+    <!-- Font Awesome CSS -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
+    />
+    <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+    <!-- add sutonnimj font -->
+    <link
+      rel="stylesheet"
+      href="https://fonts.maateen.me/sutonnyomj/font.css"
+      type="text/css"
+      charset="utf-8"
+    />
+
+    <style>
+      body {
+        font-family: "SutonnyMJ";
+      }
+      .contact-card {
+        border: 2px solid #c70039;
+        border-radius: 10px;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.5);
+        /* height: 150px; Set the height to 180px */
+        width: 300px;
+        margin: 10px;
+        padding-bottom: 10px;
+        display: inline-block;
+      }
+      .contact-card:hover {
+        box-shadow: 0 8px 12px rgba(0, 0, 0, 0.3);
+      }
+      .call-button {
+        position: absolute;
+        bottom: 10px;
+        right: 10px;
+      }
+      .phone-icon {
+        color: solid #c70039;
+      }
+
+      .card-body {
+        padding: 10px;
+      }
+
+      #allContactsHeading {
+        margin-right: 0;
+        position: sticky;
+        top: 10px;
+        z-index: 100;
+        width: 100%;
+        background: linear-gradient(to bottom, #c70039, #900c3f, #581845);
+        height: 150px; /* Adjust the height for both mobile and PC screens */
+        background-position: center;
+        /* or contain, depending on your preference */
+        text-align: left;
+        color: white;
+        transition: top 0.3s ease-in-out;
+      }
+      @media (max-width: 727px) {
+        #allContactsHeading {
+          /* Adjust the height for smaller screens */
+
+          background-size: contain;
+          background-repeat: no-repeat;
+        }
+      }
+
+      #searchbar {
+        position: absolute;
+        top: 70px;
+        right: 10px;
+        width: 40%; /* Set the width to 50% of the container */
+        border-radius: 20px;
+        transition: width 0.3s ease-in-out; /* Add transition for smooth effect */
+        overflow: hidden; /* Hide overflow content */
+      }
+      #searchIcon {
+        position: absolute;
+        right: 10px;
+        top: 50%;
+        transform: translateY(-50%); /* Center the icon vertically */
+        border-radius: 20px;
+        cursor: pointer;
+      }
+      #searchbar:hover {
+        width: 40%; /* Expand the search bar on hover */
+      }
+
+      #searchIcon:hover + #searchbar {
+        width: 40%; /* Expand the search bar when the icon is hovered */
+      }
+      #searchbar input.form-control {
+        border-radius: 20px;
+        /* Override the border-radius for the form-control class */
+      }
+
+      .btn-primary {
+        background: linear-gradient(to bottom, #c70039, #900c3f, #581845);
+        border: 1px solid #c70039;
+      }
+
+      .btn:focus {
+        box-shadow: 0 0 0 0.2rem rgba(137, 23, 75, 0.5);
+      }
+      h2 {
+        color: #581845;
+        font-weight: bold;
+        /* make it full width */
+        width: 100%;
+      }
+      h3 {
+        color: #585858;
+        font-weight: bold;
+        /* text size */
+        font-size: 1.5rem;
+        margin-left: 15px;
+        /* make it full width */
+        width: 100%;
+      }
+      .row {
+        /* add marging below */
+        margin-bottom: 50px;
+        /* give some padding */
+        /* padding-left: 80px; */
+      }
+      .header-icon {
+        margin-top: 10px;
+        margin-bottom: 10px;
+        margin-right: 10px;
+        margin-left: 30px;
+        padding: 10px;
+        background-color: rgb(240, 240, 240);
+        border-radius: 20%;
+        max-height: 120px;
+        max-width: 120px;
+        /* add telephone shake animation */
+        animation: shake 0.5s;
+        animation-iteration-count: 2;
+      }
+
+      @keyframes shake {
+        0% {
+          transform: translate(0, 0) rotate(0);
+        }
+        10% {
+          transform: translate(-10px, 0) rotate(-5deg);
+        }
+        20% {
+          transform: translate(10px, 0) rotate(5deg);
+        }
+        30% {
+          transform: translate(-10px, 0) rotate(-5deg);
+        }
+        40% {
+          transform: translate(10px, 0) rotate(5deg);
+        }
+        50% {
+          transform: translate(-10px, 0) rotate(-5deg);
+        }
+        60% {
+          transform: translate(10px, 0) rotate(5deg);
+        }
+        70% {
+          transform: translate(-10px, 0) rotate(-5deg);
+        }
+        80% {
+          transform: translate(10px, 0) rotate(5deg);
+        }
+        90% {
+          transform: translate(-10px, 0) rotate(-5deg);
+        }
+        100% {
+          transform: translate(0, 0) rotate(0);
+        }
+      }
+
+      /* Add this CSS code for animation */
+      @keyframes fadeIn {
+        0% {
+          opacity: 0;
+        }
+        100% {
+          opacity: 1;
+        }
+      }
+      .contact-card {
+        animation: fadeIn 1s ease-out; /* Adjust the animation duration and timing function as needed */
+      }
+
+      .dropdown-item:hover {
+        background: linear-gradient(to bottom, #c70039, #900c3f, #581845);
+        color: white;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="allContactsHeading" style="top: 0px">
+      <img
+        src="https://tagsylvania.com/wp-content/uploads/2014/07/telephone-iconred.png"
+        class="header-icon"
+      />
+      <div id="searchbar" class="input-group mb-3">
+        <input
+          type="text"
+          class="form-control rounded-pill border-0 py-2 px-3"
+          placeholder="Search for a contact by name or phone number"
+          id="searchInput"
+        />
+        <div class="input-group-append">
+          <span class="input-group-text" id="searchIcon">
+            <i class="fa fa-search"></i>
+          </span>
+        </div>
+      </div>
+    </div>
+    <br />
+    <div class="container">
+      <div class="row">
+        <div class="col text-right">
+          <div
+            class="dropdown"
+            style="position: absolute; top: 10px; right: 10px"
+          >
+            <button
+              class="btn btn-secondary dropdown-toggle"
+              type="button"
+              id="filterDropdownButton"
+              data-toggle="dropdown"
+              style="
+                background: linear-gradient(
+                  to bottom,
+                  #c70039,
+                  #900c3f,
+                  #581845
+                );
+                border: 1px solid #c70039;
+              "
+            >
+              Filter button
+            </button>
+
+            <div class="dropdown-menu" aria-labelledby="filterDropdownButton">
+              <a class="dropdown-item" href="#" id="filterAll">All</a>
+              <!-- Dynamically generate filter buttons for each category -->
+              <!-- You can use JavaScript to populate this part -->
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div id="contactCardsContainer">
+        <!-- Cards will be dynamically generated here -->
+      </div>
+
+      <div id="noMatchesMessage" style="display: none; color: red">
+        <h2 align="center">No matches found</h2>
+      </div>
+    </div>
+    <script>
+      // Function to search and filter contacts by name or number
+      document.addEventListener("DOMContentLoaded", function () {
+        const header = document.getElementById("allContactsHeading");
+        let lastScrollTop = 0;
+
+        window.addEventListener("scroll", function () {
+          const scrollTop =
+            window.scrollY || document.documentElement.scrollTop;
+
+          if (lastScrollTop > scrollTop) {
+            header.style.top = "0";
+          } else {
+            header.style.top = "-150px"; // Adjust the negative value to hide more or less of the image
+          }
+          lastScrollTop = scrollTop;
+        });
+
+       const contacts = [
+          {
+                                      নাম: "অধ্যাপক ড. মো. ইমদাদুল ",
+			ধারা:"১৭ (১) (ক)",	
+                                 সদস্যপদ: "সভাপতি",			
+			পদ: "ভাইস-চ্যান্সেলর ",
+                                    ফোন: ["৮৯৩৫৩০৮৩","৮৯২৩০৯৫","২২৩৩৫৪৩১৭ "],
+            category: "সিন্ডিকেট ",
+                                      ফাক্স  :["৪৭১১৮৪৪৯ "]
+          },
+		   {
+                                      নাম: "অধ্যাপক ড. কামালউদ্দীন আহমদ ",
+	                        ধারা:"১৭ (১) (খ)",
+			 সদস্যপদ: "সদস্যবৃন্দ",			
+			পদ: "ট্রেজারার  ",
+                                    ফোন: ["২২৩৩৫৫৬৩৩ ","০১৭২০০৪৩৩৩৩ "],
+            category: "সিন্ডিকেট ",
+                                      
+          },
+		  {
+                                      নাম: "জনাব মোহাম্মদ আবু ইউসুফ মিয়া",
+		              ধারা:"১৭ (১)  (গ) ",
+					   সদস্যপদ: "সচিব",
+			পদ: "অতিরিক্ত সচিব",
+			
+                                    ফোন: ["২২৩৩৮৮০৩৪  ","০১৫৫২৩০৭২৫৫  "],
+            category: "সিন্ডিকেট ",
+                                      
+          },
+		  {
+                                      নাম: "জনাব মোঃ মাহমুদুল আলম ",
+			   ধারা:"১৭ (১)  (গ) ",
+			    সদস্যপদ: "সচিব",
+			পদ: "যুগ্ম সচিব ",
+                                    ফোন: ["২২৩৩৫২১৮৫   ","০১৭২০১২৭৭৬২   "],
+            category: "সিন্ডিকেট ",
+                                      
+          },
+		   {
+                                      নাম: "প্রকৌশলী মোঃ ওহিদুজ্জামান   ",
+			  ধারা:"১৭ (১) ( জ)",
+			পদ: "রেজিস্ট্রার, জগন্নাথ বিশ্ববিদ্যালয়, ঢাকা ",
+                                    ফোন: ["৯৫৩৪২৫৫ ","০১৭১৩০১৮৫১১ "],
+            category: "সিন্ডিকেট ",                           
+          },
+		  {
+                                      নাম: "অধ্যাপক ড. মোহাম্মদ ফরাসউদ্দিন  ",
+			  ধারা:"১৭ (১)  (ঘ) ",
+			   সদস্যপদ: "সদস্যবৃন্দ",
+			পদ: "চেয়ারপার্সন, বোর্ড অব ট্রাস্টিজ ",
+                                    ফোন: ["৯৬৬৬৭৭৫৫৭৭ ","০১৭৭৭৭৫৭১৮৮   ","৯৮৫০৯০৯ "],
+            category: "সিন্ডিকেট ",
+                                      
+          },
+		  {
+                                      নাম: "অধ্যাপক ড. হারুন-অর-রশিদ  ",
+			  ধারা:"১৭ (১) ( ঘ)",
+			   সদস্যপদ: "সদস্যবৃন্দ",
+			পদ: "রাষ্ট্রবিজ্ঞান বিভাগ,ঢাকা বিশ্ববিদ্যালয়",
+                                    ফোন: ["০১৭৫৫৬৪২১০০  "],
+            category: "সিন্ডিকেট ",
+                                      
+          },
+		  {
+                                      নাম: "অধ্যাপক ড. মোঃ কামাল উদ্দীন   ",
+									  ধারা:"১৭ (১) ( ঙ)",
+									   সদস্যপদ: "সদস্যবৃন্দ",
+			পদ: "ইন্টারন্যাশনাল বিজনেস বিভাগ,ঢাকা বিশ্ববিদ্যালয় ",
+                                    ফোন: ["৯৬৬১৯০০   ","০১৭১৩৪৫৩০৪০ "],
+            category: "সিন্ডিকেট ",
+                                      
+          },
+		  {
+                                      নাম: "অধ্যাপক ড. মোঃ হাবিবুর রহমান  ",
+									   ধারা:"১৭ (১) ( চ)",
+									    সদস্যপদ: "সদস্যবৃন্দ",
+			পদ: "পুরকৌশল বিভাগ, বাংলাদেশ প্রকৌশল বিশ্ববিদ্যালয় ",
+                                    ফোন: ["৪৯২৭৪০৩৪-৫৩ ","০১৭১২১০৮০০৭  "],
+            category: "সিন্ডিকেট ",                           
+          },
+		  {
+                                      নাম: "অধ্যাপক ড. মোঃ রইছ উদ্দীন   ",
+									    ধারা:"১৭ (১) ( ছ)",
+										 সদস্যপদ: "সদস্যবৃন্দ",
+			পদ: "ডিন, কলা অনুষদ, জগন্নাথ বিশ্ববিদ্যালয়, ঢাকা ",
+                                    ফোন: ["২২৩৩৫৩৬৭৫ ","০১৭২৬৬৫৭৩৭২ "],
+            category: "সিন্ডিকেট ",                           
+          },
+		  {
+                                      নাম: "অধ্যাপক ড. মোঃ গোলাম মোস্তফা   ",
+									    ধারা:"১৭ (১) ( ছ)",
+										 সদস্যপদ: "সদস্যবৃন্দ",
+			পদ: "ডিন, বিজনেস স্টাডিজ অনুষ, জগন্নাথ বিশ্ববিদ্যালয়, ঢাকা ",
+                                    ফোন: ["২২৩৩৫৩৭৮৮ ","০১৫৫৬৩১৪৩৮০  "],
+            category: "সিন্ডিকেট ",                           
+          },
+		  {
+                                      নাম: "অধ্যাপক ড. মোঃ শাহজাহান    ",
+									    ধারা:"১৭ (১) ( ছ)",
+										 সদস্যপদ: "সদস্যবৃন্দ",
+			পদ: "ডিন, বিজ্ঞান অনুষদ , জগন্নাথ বিশ্ববিদ্যালয়, ঢাকা ",
+                                    ফোন: ["২২৩৩৫৩৮৭৮  ","০১৮১৩৫০০৫১৩   ","৮৮৩১৫৭২ "],
+            category: "সিন্ডিকেট ",                           
+          },
+		  		  {
+                                      নাম: "অধ্যাপক ড. হোসনে আরা বেগম   ",
+									    ধারা:"১৭ (১) ( জ)",
+										 সদস্যপদ: "সদস্যবৃন্দ",
+			পদ: "বাংলা  বিভাগ , জগন্নাথ বিশ্ববিদ্যালয়, ঢাকা ",
+                                    ফোন: ["০১৭১৫০৪০৬৯৬  "],
+            category: "সিন্ডিকেট ",                           
+          },
+		  	  {
+                                      নাম: "অধ্যাপক ড. মোঃ নূরে আলম আব্দুল্লাহ    ",
+									  ধারা:"১৭ (১) ( জ)",
+									   সদস্যপদ: "সদস্যবৃন্দ",
+			পদ: "পদার্থবিজ্ঞান বিভাগ , জগন্নাথ বিশ্ববিদ্যালয়, ঢাকা",
+                                    ফোন: ["০১৩০০৯৭৮১৬৬৬  "],
+            category: "সিন্ডিকেট ",                           
+          },
+		 
+		  {
+                                      নাম: "অধ্যাপক ড. মো. ইমদাদুল ",
+			ধারা:"১১ (১) ",	
+                                  সদস্যপদ: "সভাপতি",			
+			পদ: "ভাইস-চ্যান্সেলর",
+                                    ফোন: ["৮৯৩৫৩০৮৩","৮৯২৩০৯৫","২২৩৩৫৪৩১৭ "],
+			ইন্টারকম: "১০১", 						
+            category: "অর্থ কমিটি  ",
+                                      ফাক্স  :["৪৭১১৮৪৪৯ "]
+          },
+		  {
+                                      নাম: "অধ্যাপক ড. কামালউদ্দীন আহমদ  ",
+			ধারা:"২৮ (১) (ক)  ",
+                                    সদস্যপদ: "সদস্যবৃন্দ",			
+			পদ: "ট্রেজারার ",
+                                    ফোন: ["২২৩৩৫৫৬৩৩ ","০১৭২০০৪৩৩৩৩ "],
+			ইন্টারকম: "১০১", 						
+            category: "অর্থ কমিটি  ",                                     
+          },
+		  {
+                                      নাম: "প্রকৌশলী মোঃ ওহিদুজ্জামান   ",
+			ধারা:"২৮ (১) (খ) ",		
+                               সদস্যপদ: "সদস্যবৃন্দ",			
+			পদ: "রেজিস্ট্রার,জগন্নাথ বিশ্ববিদ্যালয়, ঢাকা ",
+                                    ফোন: ["৯৫৩৪২৫৫  ","০১৭১৩০১৮৫১১  "],
+			ইন্টারকম: "১১৩", 						
+            category: "অর্থ কমিটি  ",                                     
+          },
+		  {
+                                      নাম: "অধ্যাপক ড. মোঃ রইছ উদ্দীন    ",
+			ধারা:"২৮ (১) (গ) ",	
+                                     সদস্যপদ: "সদস্যবৃন্দ",			
+			পদ: "ডিন, কলা অনুষদ, জগন্নাথ বিশ্ববিদ্যালয়, ঢাকা ",
+                                    ফোন: ["২২৩৩৫৩৬৭৫   ","০১৭২৬৬৫৭৩৭২   "],
+			ইন্টারকম: "১০৯ ", 						
+            category: "অর্থ কমিটি  ",                                     
+          },
+		  {
+                                      নাম: "অধ্যাপক ড. মোঃ কামাল উদ্দীন  ",
+			ধারা:"২৮ (১) (ঘ) ",	
+                                    সদস্যপদ: "সদস্যবৃন্দ",			
+			পদ: "ইন্টারন্যাশনাল বিজনেস বিভাগ, ঢাকা বিশ্ববিদ্যালয়, ঢাকা",
+                                    ফোন: ["৯৬৬১৯০০   ","০১৭১৩৪৫৩০৪০  "],						
+            category: "অর্থ কমিটি  ",                                     
+          },
+		  
+		  {
+                                      নাম: "জনাব মোঃ শাহ্‌ আলম   ",
+			ধারা:"২৮ (১) (চ) ",		
+                               সদস্যপদ: "সদস্যবৃন্দ",			
+			পদ: "পরিচালক (অতিরিক্ত দায়িতৃ) ,অর্থ ও হিসাব বিভাগ , বাংলাদেশ বিশ্ববিদ্যালয় মঞ্জুরি কমিশন ,ঢাকা ",
+                                    ফোন: ["৫৮১৬০২৬০  ","০১৫৫২৪১৫৮৬১  "],							
+            category: "অর্থ কমিটি  ",                                     
+          },
+		  {
+                                      নাম: "প্রকৌশলী মোঃ হেলাল উদ্দিন পাটোয়ারী, পিইঞ্জ  ",
+			ধারা:"২৮ (১) (ছ) ",	
+                                       সদস্যপদ: "সদস্যবৃন্দ",			
+			পদ: "প্রধান প্রকৌশলী, প্রকৌশল দপ্তর , জগন্নাথ বিশ্ববিদ্যালয়, ঢাকা ",
+			ইন্টারকম: "১৩৭  ",
+                                    ফোন: ["৯৫১৫৬৯৯   ","০১৭১১৫৩৫৩৯৭   "],						
+            category: "অর্থ কমিটি  ",                                     
+          },
+		  {
+                                      নাম: "অধ্যাপক ড. কাজী মোঃ নাসির উদ্দীন   ",
+			ধারা:"২৮ (১) (জ)  ",	
+                                      সদস্যপদ: " সদস্য-সচিব",			
+			পদ: "পরিচালক (অর্থ ও হিসাব) , জগন্নাথ বিশ্ববিদ্যালয়, ঢাকা ",
+			ইন্টারকম: "১২৬ ",
+                                    ফোন: ["২২৩৩৫০০৬৯    ","০১৭১২৬৭৮২৮৪"],						
+            category: "অর্থ কমিটি  ",                                     
+          },
+		   {
+                                      নাম: "অধ্যাপক ড. মো. ইমদাদুল ",
+			ধারা:"৩০ (১) (ক) ",	
+                                 সদস্যপদ: "সভাপতি",			
+			পদ: "ভাইস-চ্যান্সেলর ",
+                                    ফোন: ["৮৯৩৫৩০৮৩","৮৯২৩০৯৫","২২৩৩৫৪৩১৭ "],
+            category: "পরিকল্পনা, উন্নয়ন ও ওয়ার্কস কমিটি  ",
+                                      ফাক্স  :["৪৭১১৮৪৪৯ "]
+          },
+		  {
+                                      নাম: "অধ্যাপক  ড. কামালউদ্দীন আহমদ",	
+			ধারা:"৩০ (১) (খ)  ",						  
+                                 সদস্যপদ: "সদস্যবৃন্দ ",			
+			পদ: "ট্রেজারার  ",
+                                    ফোন: ["২২৩৩৫৫৬৩৩ ","০১৭২০০৪৩৩৩৩  "],
+            category: "পরিকল্পনা, উন্নয়ন ও ওয়ার্কস কমিটি  ",
+          },
+		  {
+                                      নাম: "প্রকৌশলী মোঃ ওহিদুজ্জামান ",	
+			  ধারা:"৩০ (১) (গ) ",
+                                 সদস্যপদ: "সদস্যবৃন্দ ",			
+			পদ: "রেজিস্ট্রার ",
+                                    ফোন: ["৯৫৩৪২৫৫  ","০১৭১৩০১৮৫১১   "],
+            category: "পরিকল্পনা, উন্নয়ন ও ওয়ার্কস কমিটি  ",
+          },
+		  {
+                                      নাম: "অধ্যাপক ড. এস এম মাসুম বিল্লাহ ",	
+			  ধারা:"৩০ (১) (ঘ)  ",
+                                 সদস্যপদ: "সদস্যবৃন্দ ",			
+			পদ: "ডিন, আইন অনুষদ  ",
+                                    ফোন: ["২২৩৩৫৭৩১০   ","০১৭১৬৭৬০১৬১ "],
+            category: "পরিকল্পনা, উন্নয়ন ও ওয়ার্কস কমিটি  ",
+          },
+		  {
+                                      নাম: "অধ্যাপক ড. মোঃ মনিরুজ্জামান খন্দকার  ",	
+			  ধারা:"৩০ (১) (ঘ)  ",
+                                 সদস্যপদ: "সদস্যবৃন্দ ",			
+			পদ: "ডিন, লাইফ এন্ড আর্থ সায়েন্স অনুষদ , জগন্নাথ বিশ্ববিদ্যালয়, ঢাকা  ",
+                                    ফোন: ["২২৩৩৫৭৯০০    ","২২২২২৯৪৮৫ ","০১৮১৬৮৫৩৩৮১  "],
+            category: "পরিকল্পনা, উন্নয়ন ও ওয়ার্কস কমিটি  ",
+          },
+		  {
+                                      নাম: "অধ্যাপক ড. মোঃ হাবিবুর রহমান  ",	
+			  ধারা:"৩০ (১) (ঙ)  ",
+                                 সদস্যপদ: "সদস্যবৃন্দ ",			
+			পদ: "পুরকৌশল বিভাগবাংলাদেশ প্রকৌশল বিশ্ববিদ্যালয়, ঢাকা  ",
+                                    ফোন: ["০১৭১২১০৮০০৭  "],
+            category: "পরিকল্পনা, উন্নয়ন ও ওয়ার্কস কমিটি  ",
+          },
+		  {
+                                      নাম: "অধ্যাপক ড. মোঃ শাহজাহান   ",	
+			  ধারা:"৩০ (১) (ঙ)  ",
+                                 সদস্যপদ: "সদস্যবৃন্দ ",			
+			পদ: "ডিন, বিজ্ঞান অনুষদ , জগন্নাথ বিশ্ববিদ্যালয়, ঢাকা ",
+                                    ফোন: ["০১৮১৩৫০০৫১৩   ","৮৮৩১৫৭২ "],                                  
+            category: "পরিকল্পনা, উন্নয়ন ও ওয়ার্কস কমিটি  ",
+          },
+		  {
+                                      নাম: "জনাব মোঃ জাবেদ আলম মৃধা ",	
+			  ধারা:"৩০ (১) (চ) ",
+                                 সদস্যপদ: "সদস্যবৃন্দ ",			
+			পদ: "তত্ত্বাবধায়ক প্রকৌশলী ,ঢাকা বিশ্ববিদ্যালয়, ঢাকা ",
+                                    ফোন: ["০১৭১৫৩৬৪১৩০ "],                                  
+            category: "পরিকল্পনা, উন্নয়ন ও ওয়ার্কস কমিটি  ",
+          },
+		  {
+                                      নাম: "জনাব মীর মনজুরুর রহমান   ",	
+			  ধারা:"৩০ (১) (ছ)  ",
+                                 সদস্যপদ: "সদস্যবৃন্দ ",			
+			পদ: "প্রধান স্থাপতি স্থাপত্য অধিদপ্তর, স্থাপত্য ভবন, সেগুনবাগিচা, ঢাকা ",
+                                    ফোন: ["০১৫৫২৩২২৬৫৯ "],                                  
+            category: "পরিকল্পনা, উন্নয়ন ও ওয়ার্কস কমিটি  ",
+          },
+		  {
+                                      নাম: "অধ্যাপক  ড. আফসানা হক   ",	
+			  ধারা:"৩০ (১) (জ)  ",
+                                 সদস্যপদ: "সদস্যবৃন্দ ",			
+			পদ: "বিভাগীয় প্রধান ,নগর ও অঞ্চল পরিকল্পনা বিভাগ, বাংলাদেশ প্রকৌশল বিশ্ববিদ্যালয়",
+                                    ফোন: ["০১৮১৯৮১৭৮৭৯ "],                                  
+            category: "পরিকল্পনা, উন্নয়ন ও ওয়ার্কস কমিটি  ",
+          },
+		  {
+                                      নাম: "অধ্যাপক ড. কাজী মোঃ নাসির উদ্দীন   ",	
+			  ধারা:"৩০ (১) (ঝ)  ",
+                                 সদস্যপদ: "সদস্যবৃন্দ ",			
+			পদ: "পরিচালক (অর্থ ও হিসাব দপ্তর) , জগন্নাথ বিশ্ববিদ্যালয়, ঢাকা",
+                                    ফোন: ["২২৩৩৫০০৬৯ ","০১৭১২৬৭৮২৮৪ "],                                  
+            category: "পরিকল্পনা, উন্নয়ন ও ওয়ার্কস কমিটি  ",
+          },
+		  {
+                                      নাম: "প্রকৌশলী মোঃ হেলাল উদ্দিন পাটোয়ারী, পিইঞ্জ    ",	
+			  ধারা:"৩০ (১) (ঞ)   ",
+                                 সদস্যপদ: "সদস্যবৃন্দ ",			
+			পদ: "প্রধান প্রকৌশলী, প্রকৌশল দপ্তর , জগন্নাথ বিশ্ববিদ্যালয়, ঢাকা",
+                                    ফোন: ["৯৫৩৪২৮১  ","০১৭১১৫৩৫৩৯৭ "],                                  
+            category: "পরিকল্পনা, উন্নয়ন ও ওয়ার্কস কমিটি  ",
+          },
+		  {
+                                      নাম: "প্রকৌশলী  মোঃ সাহাদাত হোসেন     ",	
+			  ধারা:"৩০ (১) (ট)   ",
+                                 সদস্যপদ: "সদস্য-সচিব ",			
+			পদ: "পরিচালক, পরিকল্পনা উন্নয়ন ও ওয়ার্কস দপ্তর  , জগন্নাথ বিশ্ববিদ্যালয়, ঢাকা",
+                                    ফোন: ["৯৫১৫০৩৯  ","০১৭১১৮৬৭৮৯৪ "],                                  
+            category: "পরিকল্পনা, উন্নয়ন ও ওয়ার্কস কমিটি  ",
+          },
+		  
+        ];
+
+        const uniqueCategories = [
+          ...new Set(contacts.map((contact) => contact.category)),
+        ];
+
+        // get contactCardsContainer
+
+        const contactCardsContainer = document.getElementById(
+          "contactCardsContainer"
+        );
+        // Function to dynamically generate contact cards
+        function showContacts(targetCategory = "All", newContacts = contacts) {
+          if (targetCategory === "All") {
+            uniqueCategories.forEach((category) => {
+              generateContactCards(
+                `${category.toLowerCase()}Contacts`,
+                category,
+                newContacts.filter((contact) => contact.category === category)
+              );
+            });
+          } else {
+            generateContactCards(
+              `${targetCategory.toLowerCase()}Contacts`,
+              targetCategory,
+              newContacts.filter(
+                (contact) => contact.category === targetCategory
+              )
+            );
+          }
+        }
+
+        showContacts();
+
+        // ...
+
+        function generateContactCards(
+          containerId,
+          category,
+          newContacts = contacts
+        ) {
+          const container = document.createElement("div");
+          container.id = containerId;
+          container.className = "row";
+          contactCardsContainer.appendChild(container);
+
+          const filteredContacts = newContacts.filter(
+            (contact) => contact.category === category
+          );
+
+          const subcategoryMap = new Map();
+
+          filteredContacts.forEach((contact) => {
+            const subcategory = contact.সদস্যপদ;
+            if (!subcategoryMap.has(subcategory)) {
+              const subcontainer = document.createElement("div");
+              subcontainer.className = "row";
+              subcategoryMap.set(subcategory, subcontainer);
+              container.appendChild(subcontainer);
+            }
+
+            const subcontainer = subcategoryMap.get(subcategory);
+
+            const card = document.createElement("div");
+            card.className = "card contact-card mb-3";
+
+            const cardBody = document.createElement("div");
+            cardBody.className = "card-body";
+
+            const title = document.createElement("h5");
+            // align it center
+            title.style.textAlign = "center";
+            title.className = "card-title";
+            title.textContent = contact.নাম;
+            cardBody.appendChild(title);
+            // add পদ as subtitle if exists and সদস্যপদ as tag if exists
+            if (contact.পদ) {
+              const subtitle = document.createElement("h6");
+              subtitle.className = "card-subtitle mb-2 text-muted";
+              subtitle.textContent = contact.পদ;
+              subtitle.style.textAlign = "center";
+              cardBody.appendChild(subtitle);
+            }
+
+            Object.keys(contact).forEach((property) => {
+              // Skip the name , category , সদস্যপদ and পদ properties
+              if (["নাম", "category", "সদস্যপদ", "পদ"].includes(property))
+                return;
+              const propertyName =
+                property.charAt(0).toUpperCase() + property.slice(1);
+              const propertyElement = document.createElement("p");
+              propertyElement.className = "card-text";
+              // print the property array in new line if it is an array and use property name as bold and use classes to style the text and align them
+              if (Array.isArray(contact[property])) {
+                propertyElement.innerHTML = `<b>${propertyName}</b>: <br/>${contact[
+                  property
+                ].join("<br/>")}`;
+              } else {
+                propertyElement.innerHTML = `<b>${propertyName}</b>: ${contact[property]}`;
+              }
+              cardBody.appendChild(propertyElement);
+            });
+
+            const callButton = document.createElement("button");
+            callButton.className = "call-button btn btn-primary";
+            callButton.innerHTML = '<i class="fa fa-address-book"></i>';
+
+            // Get the first phone number if it exists
+            const phoneNumber = newContacts.find((contact) => contact.phone)
+              ?.phone[0];
+
+            // Open the phone number in dialpad when the call button is clicked
+            callButton.addEventListener("click", () => {
+              if (phoneNumber) {
+                window.open(`tel:${phoneNumber}`);
+              }
+            });
+
+            card.appendChild(cardBody);
+            card.appendChild(callButton);
+
+            subcontainer.appendChild(card);
+          });
+
+          if (filteredContacts.length > 0) {
+            const heading = document.createElement("h2");
+            heading.textContent =
+              category === "All" ? "All Contacts" : category;
+            container.insertBefore(heading, container.firstChild);
+
+            // for all subcontainers add subcategory heading
+            subcategoryMap.forEach((subcontainer, subcategory) => {
+              const subheading = document.createElement("h3");
+              subheading.textContent = subcategory;
+              subcontainer.insertBefore(subheading, subcontainer.firstChild);
+            });
+          } else container.remove();
+        }
+
+        // ...
+        document
+          .getElementById("filterAll")
+          .addEventListener("click", () => filterContacts("All"));
+
+        function updateContactCards(category) {
+          generateContactCards(`${category.toLowerCase()}Contacts`, category);
+        }
+
+        document
+          .getElementById("searchInput")
+          .addEventListener("input", function () {
+            const searchTerm = this.value.toLowerCase();
+            // Clear previous search results
+            contactCardsContainer.innerHTML = "";
+
+            // Filter contacts based on search term, search whole contact object
+            let filteredContacts = contacts.filter((contact) => {
+              return Object.keys(contact).some((property) => {
+                if (Array.isArray(contact[property])) {
+                  return contact[property]
+                    .join(" ")
+                    .toLowerCase()
+                    .includes(searchTerm);
+                }
+                return contact[property]
+                  .toString()
+                  .toLowerCase()
+                  .includes(searchTerm);
+              });
+            });
+
+            //get selected category if selected
+            var selectedCategory = document.getElementById(
+              "filterDropdownButton"
+            ).innerText;
+            if (!uniqueCategories.includes(selectedCategory))
+              selectedCategory = "All";
+            // if selected category is present in uniqueCategories then filter contacts based on selected category and update array
+            if (uniqueCategories.includes(selectedCategory)) {
+              filteredContacts = filteredContacts.filter(
+                (contact) => contact.category === selectedCategory
+              );
+            } else selectedCategory = "All";
+
+            // Display matching cards and categories
+            if (searchTerm !== "") {
+              uniqueCategories.forEach((category) => {
+                const matchingContacts = filteredContacts.filter(
+                  (contact) => contact.category === category
+                );
+
+                if (matchingContacts.length > 0) {
+                  // write a code to generate cards for matching contacts. dont use function call here
+                  generateContactCards(
+                    `${category.toLowerCase()}Contacts`,
+                    category,
+                    matchingContacts
+                  );
+                }
+              });
+            } else {
+              // If search bar is empty, display all contacts and categories
+              showContacts(selectedCategory);
+            }
+
+            // Display "No matches found" message if there are no matching contacts
+            const noMatchesMessage =
+              document.getElementById("noMatchesMessage");
+            noMatchesMessage.style.display =
+              filteredContacts.length === 0 && searchTerm !== ""
+                ? "block"
+                : "none";
+          });
+
+        // Function to dynamically generate filter buttons
+        function generateFilterButtons() {
+          const filterDropdownMenu = document.querySelector(".dropdown-menu");
+
+          uniqueCategories.forEach((category) => {
+            const filterButton = document.createElement("a");
+            filterButton.className = "dropdown-item filter-button";
+            filterButton.href = "#";
+            filterButton.textContent = category;
+            filterButton.addEventListener("click", () =>
+              filterContacts(category)
+            );
+            filterDropdownMenu.appendChild(filterButton);
+          });
+        }
+
+        generateFilterButtons();
+
+        function filterContacts(category) {
+          // Update the dropdown button text
+          document.getElementById("filterDropdownButton").innerText = category;
+          // Clear previous cards
+          contactCardsContainer.innerHTML = "";
+
+          const searchTerm = document
+            .getElementById("searchInput")
+            .value.toLowerCase();
+          let filteredContacts = contacts.filter((contact) => {
+            return Object.keys(contact).some((property) => {
+              if (Array.isArray(contact[property])) {
+                return contact[property]
+                  .join(" ")
+                  .toLowerCase()
+                  .includes(searchTerm);
+              }
+              return contact[property]
+                .toString()
+                .toLowerCase()
+                .includes(searchTerm);
+            });
+          });
+
+          if (category !== "All") {
+            filteredContacts = filteredContacts.filter(
+              (contact) => contact.category === category
+            );
+            generateContactCards(
+              `${category.toLowerCase()}Contacts`,
+              category,
+              filteredContacts
+            );
+          } else showContacts(category, filteredContacts);
+
+          // Close the dropdown menu after selecting a category
+          document.getElementById("filterDropdownButton").click();
+        }
+      });
+    </script>
+  </body>
+</html>
