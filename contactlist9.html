@@ -279,21 +279,23 @@
       </div>
     </div>
 	<script>
-  function convertBanglaToEnglishNumber(banglaNumber) {
-    const banglaToEnglishMap = {
-      '০': '0',
-      '১': '1',
-      '২': '2',
-      '৩': '3',
-      '৪': '4',
-      '৫': '5',
-      '৬': '6',
-      '৭': '7',
-      '৮': '8',
-      '৯': '9',
-    };
-    return banglaNumber.replace(/[০-৯]/g, (match) => banglaToEnglishMap[match]);
-  }
+  function convertEnglishToBanglaNumber(englishNumber) {
+  const englishToBanglaMap = {
+    '0': '০',
+    '1': '১',
+    '2': '২',
+    '3': '৩',
+    '4': '৪',
+    '5': '৫',
+    '6': '৬',
+    '7': '৭',
+    '8': '৮',
+    '9': '৯',
+  };
+  return englishNumber.replace(/[0-9]/g, (match) => englishToBanglaMap[match]);
+}
+
+  
 </script>
     <script>
       // Function to search and filter contacts by name or number
@@ -760,38 +762,39 @@
           generateContactCards(`${category.toLowerCase()}Contacts`, category);
         }
       
-        document.getElementById("searchInput")
-          .addEventListener("input", function () {
-            const searchTerm = this.value.toLowerCase();
-			const englishSearchTerm = convertBanglaToEnglishNumber(searchTerm);
-            // Clear previous search results
-            contactCardsContainer.innerHTML = "";
+       // ... (previous code)
 
-            // Filter contacts based on search term, search whole contact object
-           let filteredContacts = contacts.filter((contact) => {
-      return Object.keys(contact).some((property) => {
-        if (Array.isArray(contact[property])) {
-          return contact[property]
-            .map((value) => value.toLowerCase())
-            .join(" ")
-            .includes(searchTerm);
-        } else if (property === "phone") {
-          return contact[property]
-		  
-            .map((number) => convertBanglaToEnglishNumber(number))
-            .join(" ")
-            .includes(englishSearchTerm);
-        } else {
-          return contact[property]
-            .toString()
-            .toLowerCase()
-            .includes(searchTerm);
-        }
-		
+document.getElementById("searchInput").addEventListener("input", function () {
+  const searchTerm = this.value.toLowerCase();
+  const banglaSearchTerm = convertEnglishToBanglaNumber(searchTerm); // Convert English to Bangla
+  // Clear previous search results
+  contactCardsContainer.innerHTML = "";
 
-      });
+  // Filter contacts based on search term, search whole contact object
+  let filteredContacts = contacts.filter((contact) => {
+    return Object.keys(contact).some((property) => {
+      if (Array.isArray(contact[property])) {
+        return contact[property]
+          .map((value) => value.toLowerCase())
+          .join(" ")
+          .includes(searchTerm);
+      } else if (property === "phone") {
+        return contact[property]
+          .map((number) => convertEnglishToBanglaNumber(number)) // Corrected function call
+          .join(" ")
+          .includes(banglaSearchTerm); // Use the converted Bangla search term
+      } else {
+        return contact[property]
+          .toString()
+          .toLowerCase()
+          .includes(searchTerm);
+      }
     });
-	//console.log(convertBanglaToEnglishNumber("11262623"));
+  });
+
+  // ... rest of your code
+
+
 
             //get selected category if selected
             var selectedCategory = document.getElementById(
