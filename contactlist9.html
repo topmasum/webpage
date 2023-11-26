@@ -775,7 +775,7 @@
             .map((value) => value.toLowerCase())
             .join(" ")
             .includes(searchTerm);
-        } else if (property === "phone") {
+        } else if (property === "ফোন") {
           return contact[property]
             .map((number) => convertBanglaToEnglishNumber(number))
             .join(" ")
