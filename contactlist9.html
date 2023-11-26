@@ -759,7 +759,7 @@
         function updateContactCards(category) {
           generateContactCards(`${category.toLowerCase()}Contacts`, category);
         }
-
+      
         document.getElementById("searchInput")
           .addEventListener("input", function () {
             const searchTerm = this.value.toLowerCase();
@@ -775,8 +775,9 @@
             .map((value) => value.toLowerCase())
             .join(" ")
             .includes(searchTerm);
-        } else if (property === "ফোন") {
+        } else if (property === "phone") {
           return contact[property]
+		  
             .map((number) => convertBanglaToEnglishNumber(number))
             .join(" ")
             .includes(englishSearchTerm);
@@ -786,8 +787,11 @@
             .toLowerCase()
             .includes(searchTerm);
         }
+		
+
       });
     });
+	//console.log(convertBanglaToEnglishNumber("11262623"));
 
             //get selected category if selected
             var selectedCategory = document.getElementById(
