@@ -3,7 +3,7 @@
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Contact List(c)</title>
+    <title>Contact List 9</title>
     <link
       rel="stylesheet"
       href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
@@ -278,6 +278,23 @@
         <h2 align="center">No matches found</h2>
       </div>
     </div>
+	<script>
+  function convertBanglaToEnglishNumber(banglaNumber) {
+    const banglaToEnglishMap = {
+      '০': '0',
+      '১': '1',
+      '২': '2',
+      '৩': '3',
+      '৪': '4',
+      '৫': '5',
+      '৬': '6',
+      '৭': '7',
+      '৮': '8',
+      '৯': '9',
+    };
+    return banglaNumber.replace(/[০-৯]/g, (match) => banglaToEnglishMap[match]);
+  }
+</script>
     <script>
       // Function to search and filter contacts by name or number
       document.addEventListener("DOMContentLoaded", function () {
@@ -743,28 +760,34 @@
           generateContactCards(`${category.toLowerCase()}Contacts`, category);
         }
 
-        document
-          .getElementById("searchInput")
+        document.getElementById("searchInput")
           .addEventListener("input", function () {
             const searchTerm = this.value.toLowerCase();
+			const englishSearchTerm = convertBanglaToEnglishNumber(searchTerm);
             // Clear previous search results
             contactCardsContainer.innerHTML = "";
 
             // Filter contacts based on search term, search whole contact object
-            let filteredContacts = contacts.filter((contact) => {
-              return Object.keys(contact).some((property) => {
-                if (Array.isArray(contact[property])) {
-                  return contact[property]
-                    .join(" ")
-                    .toLowerCase()
-                    .includes(searchTerm);
-                }
-                return contact[property]
-                  .toString()
-                  .toLowerCase()
-                  .includes(searchTerm);
-              });
-            });
+           let filteredContacts = contacts.filter((contact) => {
+      return Object.keys(contact).some((property) => {
+        if (Array.isArray(contact[property])) {
+          return contact[property]
+            .map((value) => value.toLowerCase())
+            .join(" ")
+            .includes(searchTerm);
+        } else if (property === "phone") {
+          return contact[property]
+            .map((number) => convertBanglaToEnglishNumber(number))
+            .join(" ")
+            .includes(englishSearchTerm);
+        } else {
+          return contact[property]
+            .toString()
+            .toLowerCase()
+            .includes(searchTerm);
+        }
+      });
+    });
 
             //get selected category if selected
             var selectedCategory = document.getElementById(
