@@ -126,3 +126,11 @@ background:linear-gradient(120deg,#FAB2FF,40%,#663399);
 .main .left button:hover {
     box-shadow: 0 0 20px 0 rgba(0, 112, 250, 0.6); /* Enhanced blue glow effect */
 }
+.main .right img{
+	padding-top:25%;
+	
+	width:90%;
+	height:100%;
+	display:flex;
+	
+}
